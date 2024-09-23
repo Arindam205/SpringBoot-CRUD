@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate ROR ID Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+    <script>
+        async function generateRorId() {
+            // Get the values from the form
+            const wardNumber = document.getElementById("wardNumber").value;
+            const rorMasterId = document.getElementById("rorMasterId").value;
+
+            try {
+                // Call the API to generate the ROR ID
+                const response = await fetch('http://localhost:8080/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `wardNumber=${wardNumber}&rorMasterId=${rorMasterId}`,
+                });
+
+                if (response.ok) {
+                    const newRorId = await response.text();  // ROR ID is returned as plain text
+                    document.getElementById("result").innerHTML = "Generated ROR ID: <strong>" + newRorId + "</strong>";
+                    document.getElementById("result").classList.remove('error');
+                    document.getElementById("result").classList.add('success');
+                    clearForm();
+                } else {
+                    document.getElementById("result").innerText = "Failed to generate ROR ID.";
+                    document.getElementById("result").classList.remove('success');
+                    document.getElementById("result").classList.add('error');
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                document.getElementById("result").innerText = "An error occurred while submitting the form.";
+                document.getElementById("result").classList.remove('success');
+                document.getElementById("result").classList.add('error');
+            }
+        }
+
+        // Clear the form after successful submission
+        function clearForm() {
+            document.getElementById("wardNumber").value = "";
+            document.getElementById("rorMasterId").value = "";
+        }
+    </script>
+</head>
+<body>
+
+<h1>Generate ROR ID Form</h1>
+<form onsubmit="event.preventDefault(); generateRorId();">
+    <label for="wardNumber">Ward Number:</label>
+    <input type="number" id="wardNumber" name="wardNumber" required>
+
+    <label for="rorMasterId">RorMaster ID (UUID):</label>
+    <input type="text" id="rorMasterId" name="rorMasterId" required>
+
+    <button type="submit">Generate ROR ID</button>
+</form>
+
+<div id="result"></div>
+
+</body>
+</html>

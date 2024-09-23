@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicDetails Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+    <script>
+        // Function to get the rorMasterId from the URL
+        function getRorMasterIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');  // The id parameter in the URL
+        }
+
+        async function submitCivicDetails() {
+            // Get the rorMasterId from the URL
+            const rorMasterId = getRorMasterIdFromUrl();
+
+            if (!rorMasterId) {
+                document.getElementById("result").innerText = "RorMaster ID is missing in the URL.";
+                document.getElementById("result").classList.add('error');
+                return;
+            }
+
+            // Get the values from the form
+            const electricityConnection = document.getElementById("electricityConnection").value;
+            const septicTankSewerageConnection = document.getElementById("septicTankSewerageConnection").value;
+            const constructionType = document.getElementById("constructionType").value;
+
+            // Prepare the data object for the API
+            const civicDetailsData = {
+                electricityConnection: electricityConnection,
+                septicTankSewerageConnection: septicTankSewerageConnection,
+                constructionType: constructionType
+            };
+
+            try {
+                // Call the API
+                const response = await fetch(`http://localhost:8080/api/v1/civicDetails/add/${rorMasterId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(civicDetailsData),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    const rorMasterIdFromResponse = result.rorMasterId;
+
+                    document.getElementById("result").innerText = "CivicDetails created successfully!";
+                    document.getElementById("result").classList.remove('error');
+                    document.getElementById("result").classList.add('success');
+                    clearForm();
+
+                    // Redirect to the familyMemberForm.html with the rorMasterId in the URL
+                    window.location.href = `http://localhost:8080/familyMember_addMore.html?id=${rorMasterIdFromResponse}`;
+                } else {
+                    document.getElementById("result").innerText = "Failed to create CivicDetails.";
+                    document.getElementById("result").classList.remove('success');
+                    document.getElementById("result").classList.add('error');
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                document.getElementById("result").innerText = "An error occurred while submitting the form.";
+                document.getElementById("result").classList.remove('success');
+                document.getElementById("result").classList.add('error');
+            }
+        }
+
+        // Clear the form after successful submission
+        function clearForm() {
+            document.getElementById("electricityConnection").value = "";
+            document.getElementById("septicTankSewerageConnection").value = "";
+            document.getElementById("constructionType").value = "";
+        }
+
+        // On page load, verify if rorMasterId is available in URL
+        window.onload = function() {
+            const rorMasterId = getRorMasterIdFromUrl();
+            if (!rorMasterId) {
+                document.getElementById("result").innerText = "RorMaster ID not found in URL.";
+                document.getElementById("result").classList.add('error');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h1>CivicDetails Form</h1>
+<form onsubmit="event.preventDefault(); submitCivicDetails();">
+    <label for="electricityConnection">Electricity Connection:</label>
+    <input type="text" id="electricityConnection" name="electricityConnection" required>
+
+    <label for="septicTankSewerageConnection">Septic Tank/Sewerage Connection:</label>
+    <input type="text" id="septicTankSewerageConnection" name="septicTankSewerageConnection">
+
+    <label for="constructionType">Construction Type:</label>
+    <input type="text" id="constructionType" name="constructionType" required>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div id="result"></div>
+
+</body>
+</html>
