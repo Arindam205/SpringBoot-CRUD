@@ -1,6 +1,6 @@
 package com.Test1RorApplication.RORApplicationTesting.Service;
 
-import com.Test1RorApplication.RORApplicationTesting.Model.User;
+import com.Test1RorApplication.RORApplicationTesting.Model.Users;
 import com.Test1RorApplication.RORApplicationTesting.Repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -26,8 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = userRepository.findByUsername(username);
-        User user1 = userOptional.orElseThrow(() -> new UsernameNotFoundException(username));
+        Optional<Users> userOptional = userRepository.findByUsername(username);
+        Users user1 = userOptional.orElseThrow(() -> new UsernameNotFoundException(username));
         return new org.springframework.security.core.userdetails.User(user1.getUsername(), user1.getPassword(), true, true, true, true, getAuthorities("USER"));
     }
 

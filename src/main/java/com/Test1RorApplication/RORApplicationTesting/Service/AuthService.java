@@ -3,11 +3,10 @@ package com.Test1RorApplication.RORApplicationTesting.Service;
 import com.Test1RorApplication.RORApplicationTesting.DTO.AuthenticationResponse;
 import com.Test1RorApplication.RORApplicationTesting.DTO.LoginRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RegisterRequest;
-import com.Test1RorApplication.RORApplicationTesting.Model.User;
+import com.Test1RorApplication.RORApplicationTesting.Model.Users;
 import com.Test1RorApplication.RORApplicationTesting.Repository.UserRepository;
 import com.Test1RorApplication.RORApplicationTesting.Security.JWTProvider;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,7 +30,7 @@ public class AuthService {
 
     @Transactional
     public void signup(RegisterRequest registerRequest) {
-        User user = new User();
+        Users user = new Users();
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setUsername(registerRequest.getUsername());
@@ -43,7 +42,7 @@ public class AuthService {
     }
 
     @Transactional(readOnly = true)
-    public User getCurrentUser() {
+    public Users getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + username));
