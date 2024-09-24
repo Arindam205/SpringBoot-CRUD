@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -59,6 +60,11 @@ public class AuthService {
     }
 
     public AuthenticationResponse login(AdminLoginRequest loginRequest) {
+        Users user = userRepository.findByUsername(loginRequest.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + loginRequest.getUsername()));
+        if(!user.isAdmin()) {
+            return new AuthenticationResponse("-1", loginRequest.getUsername() + " not an admin");
+        }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         String token = jwtProvider.generateToken(userDetails);
