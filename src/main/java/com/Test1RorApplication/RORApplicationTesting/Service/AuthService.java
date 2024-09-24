@@ -1,5 +1,6 @@
 package com.Test1RorApplication.RORApplicationTesting.Service;
 
+import com.Test1RorApplication.RORApplicationTesting.DTO.AdminLoginRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.AuthenticationResponse;
 import com.Test1RorApplication.RORApplicationTesting.DTO.LoginRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RegisterRequest;
@@ -36,9 +37,11 @@ public class AuthService {
         user.setUsername(registerRequest.getUsername());
         user.setCreated(Instant.now());
         user.setActive(false);
-        user.setAdmin(registerRequest.isAdmin());
+        user.setAdmin(false);
         user.setPhNumber(registerRequest.getPhNumber());
         user.setWardNumber(registerRequest.getWardNumber());
+
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = true)
@@ -53,6 +56,13 @@ public class AuthService {
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         String token = jwtProvider.generateToken(userDetails);
         return new AuthenticationResponse(token, loginRequest.getUsername());
-
     }
+
+    public AuthenticationResponse login(AdminLoginRequest loginRequest) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
+        String token = jwtProvider.generateToken(userDetails);
+        return new AuthenticationResponse(token, loginRequest.getUsername());
+    }
+
 }

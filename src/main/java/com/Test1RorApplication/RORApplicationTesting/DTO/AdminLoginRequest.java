@@ -1,5 +1,6 @@
 package com.Test1RorApplication.RORApplicationTesting.DTO;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,10 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class AdminLoginRequest {
     private String username;
-    private String email;
     private String password;
-    private long phNumber;
-    private int wardNumber;
+    private boolean admin;
 }

@@ -1,5 +1,6 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
+import com.Test1RorApplication.RORApplicationTesting.DTO.AdminLoginRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.AuthenticationResponse;
 import com.Test1RorApplication.RORApplicationTesting.DTO.LoginRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RegisterRequest;
@@ -29,8 +30,13 @@ public class AuthController {
         return new ResponseEntity<>("Account activated successfully", HttpStatus.OK);
     }
 
-    @PostMapping("/login")
+    @PostMapping("/signin")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
+    }
+
+    @PostMapping("/admin/signin")
+    public AuthenticationResponse login(@RequestBody AdminLoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
 
