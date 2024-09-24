@@ -14,4 +14,6 @@ public class RegisterRequest {
     private String email;
     private String password;
     private boolean admin;
+    private long phNumber;
+    private int wardNumber;
 }
