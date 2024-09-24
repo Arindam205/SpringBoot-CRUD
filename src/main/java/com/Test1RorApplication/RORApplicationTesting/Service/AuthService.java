@@ -39,6 +39,8 @@ public class AuthService {
         user.setAdmin(registerRequest.isAdmin());
         user.setPhNumber(registerRequest.getPhNumber());
         user.setWardNumber(registerRequest.getWardNumber());
+
+        userRepository.save(user);
     }
 
     @Transactional(readOnly = true)
