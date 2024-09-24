@@ -38,6 +38,8 @@ public class AuthService {
         user.setCreated(Instant.now());
         user.setActive(false);
         user.setAdmin(registerRequest.isAdmin());
+        user.setPhNumber(registerRequest.getPhNumber());
+        user.setWardNumber(registerRequest.getWardNumber());
     }
 
     @Transactional(readOnly = true)
