@@ -1,4 +1,4 @@
-package com.Test1RorApplication.RORApplicationTesting.Conntroller;
+package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 
 import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;

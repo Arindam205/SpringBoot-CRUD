@@ -102,7 +102,7 @@
                     clearForm();
 
                     // Redirect to the familyMemberForm.html with the rorMasterId in the URL
-                    window.location.href = `http://localhost:8080/familyMember_addMore.html?id=${rorMasterIdFromResponse}`;
+                    window.location.href = `familyMember_addMore.html`;
                 } else {
                     document.getElementById("result").innerText = "Failed to create CivicDetails.";
                     document.getElementById("result").classList.remove('success');
