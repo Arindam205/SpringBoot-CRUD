@@ -1,7 +1,7 @@
 package com.Test1RorApplication.RORApplicationTesting.Service;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.FamilyMembers;
-import com.Test1RorApplication.RORApplicationTesting.Repository.FamilyMembers_Repository;
+import com.Test1RorApplication.RORApplicationTesting.Repository.FamilyMembersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class FamilyMembers_Service {
+public class FamilyMembersService {
 
     @Autowired
-    FamilyMembers_Repository familyMembersRepository;
+    FamilyMembersRepository familyMembersRepository;
 
     public FamilyMembers saveFamilyMember(FamilyMembers familyMember, UUID rorMasterId) {
         familyMember.setRorMasterId(rorMasterId);

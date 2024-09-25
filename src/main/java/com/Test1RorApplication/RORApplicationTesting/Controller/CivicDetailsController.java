@@ -1,7 +1,7 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.CivicDetails;
-import com.Test1RorApplication.RORApplicationTesting.Service.CivicDetails_Service;
+import com.Test1RorApplication.RORApplicationTesting.Service.CivicDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.UUID;
 public class CivicDetailsController {
 
     @Autowired
-    private CivicDetails_Service civicDetailsService;
+    private CivicDetailsService civicDetailsService;
 
     @PostMapping("/add/{rorMasterId}")
     public ResponseEntity<CivicDetails> addCivicDetails(@RequestBody CivicDetails civicDetails, @RequestHeader UUID rorMasterId){

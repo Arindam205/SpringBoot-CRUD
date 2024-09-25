@@ -6,10 +6,10 @@ import com.Test1RorApplication.RORApplicationTesting.Model.FamilyMembers;
 import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;
 import com.Test1RorApplication.RORApplicationTesting.RorMasterDTO;
 import com.Test1RorApplication.RORApplicationTesting.SuccessDTO;
-import com.Test1RorApplication.RORApplicationTesting.Service.Address_Service;
-import com.Test1RorApplication.RORApplicationTesting.Service.CivicDetails_Service;
-import com.Test1RorApplication.RORApplicationTesting.Service.FamilyMembers_Service;
-import com.Test1RorApplication.RORApplicationTesting.Service.RorMaster_Service;
+import com.Test1RorApplication.RORApplicationTesting.Service.AddressService;
+import com.Test1RorApplication.RORApplicationTesting.Service.CivicDetailsService;
+import com.Test1RorApplication.RORApplicationTesting.Service.FamilyMembersService;
+import com.Test1RorApplication.RORApplicationTesting.Service.RorMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +23,14 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/rorMaster")
 public class RorMasterController {
-    private final RorMaster_Service rorMasterService;
-    private final CivicDetails_Service civicDetailsService;
-    private final Address_Service addressService;
-    private final FamilyMembers_Service familyMembersService;
+    private final RorMasterService rorMasterService;
+    private final CivicDetailsService civicDetailsService;
+    private final AddressService addressService;
+    private final FamilyMembersService familyMembersService;
 
     @Autowired
-    public RorMasterController(RorMaster_Service rorMasterService, CivicDetails_Service civicDetailsService,
-                               Address_Service addressService, FamilyMembers_Service familyMembersService) {
+    public RorMasterController(RorMasterService rorMasterService, CivicDetailsService civicDetailsService,
+                               AddressService addressService, FamilyMembersService familyMembersService) {
         this.rorMasterService = rorMasterService;
         this.civicDetailsService = civicDetailsService;
         this.addressService = addressService;

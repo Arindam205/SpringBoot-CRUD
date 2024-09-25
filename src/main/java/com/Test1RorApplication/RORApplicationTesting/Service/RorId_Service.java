@@ -1,18 +1,17 @@
 package com.Test1RorApplication.RORApplicationTesting.Service;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.RorId;
-import com.Test1RorApplication.RORApplicationTesting.Repository.RorId_Repository;
+import com.Test1RorApplication.RORApplicationTesting.Repository.RorIdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
 public class RorId_Service {
 
     @Autowired
-    private RorId_Repository rorId_repository;
+    private RorIdRepository rorId_repository;
 
     public String generateRorId(UUID rorMasterId){
         String stateCode = "16";
