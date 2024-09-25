@@ -1,7 +1,7 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.Address;
-import com.Test1RorApplication.RORApplicationTesting.Service.Address_Service;
+import com.Test1RorApplication.RORApplicationTesting.Service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.UUID;
 public class AddressController {
 
     @Autowired
-    private Address_Service addressService;
+    private AddressService addressService;
 
     @PostMapping("/add/{rorMasterId}")
     public ResponseEntity<Address> addAddress(@RequestBody Address address, @PathVariable UUID rorMasterId){

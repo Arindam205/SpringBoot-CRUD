@@ -1,7 +1,7 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.FamilyMembers;
-import com.Test1RorApplication.RORApplicationTesting.Service.FamilyMembers_Service;
+import com.Test1RorApplication.RORApplicationTesting.Service.FamilyMembersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.UUID;
 public class FamilyMembersController {
 
     @Autowired
-    FamilyMembers_Service familyMembersService;
+    FamilyMembersService familyMembersService;
 
     @PostMapping("/add/{rorMasterId}")
     public ResponseEntity<FamilyMembers> addFamilyMember(@RequestBody FamilyMembers familyMembers, @PathVariable UUID rorMasterId){

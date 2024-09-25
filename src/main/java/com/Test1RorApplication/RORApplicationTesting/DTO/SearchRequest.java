@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DEOActivateRequest {
-    private String id;
+public class SearchRequest {
+    private SearchRequestType searchType;
+    private String searchValue;
 }

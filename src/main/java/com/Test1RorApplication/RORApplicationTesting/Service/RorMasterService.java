@@ -1,22 +1,20 @@
 package com.Test1RorApplication.RORApplicationTesting.Service;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;
-import com.Test1RorApplication.RORApplicationTesting.Repository.RorMaster_Repository;
-import lombok.*;
+import com.Test1RorApplication.RORApplicationTesting.Repository.RorMasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 
 @Service
-public class RorMaster_Service {
+public class RorMasterService {
 
 
     @Autowired
-    private RorMaster_Repository rorMasterRepository;
+    private RorMasterRepository rorMasterRepository;
 
     // Method to save a new RorMaster record
     public RorMaster saveRorMaster(RorMaster rorMaster) {
