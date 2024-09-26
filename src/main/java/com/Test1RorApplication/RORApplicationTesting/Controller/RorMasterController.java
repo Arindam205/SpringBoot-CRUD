@@ -1,10 +1,8 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
+import com.Test1RorApplication.RORApplicationTesting.DTO.RorResponseDTO;
 import com.Test1RorApplication.RORApplicationTesting.Model.*;
-import com.Test1RorApplication.RORApplicationTesting.RorMasterDTO;
 import com.Test1RorApplication.RORApplicationTesting.Service.*;
-import com.Test1RorApplication.RORApplicationTesting.Model.Address;
-import com.Test1RorApplication.RORApplicationTesting.Model.CivicDetails;
 import com.Test1RorApplication.RORApplicationTesting.Model.FamilyMembers;
 import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RorMasterDTO;
@@ -25,11 +23,11 @@ public class RorMasterController {
     private final CivicDetailsService civicDetailsService;
     private final AddressService addressService;
     private final FamilyMembersService familyMembersService;
-    private final RorId_Service rorIdService;
+    private final RorIdService rorIdService;
 
     @Autowired
     public RorMasterController(RorMasterService rorMasterService, CivicDetailsService civicDetailsService,
-                               AddressService addressService, FamilyMembersService familyMembersService, RorId_Service rorIdService) {
+                               AddressService addressService, FamilyMembersService familyMembersService, RorIdService rorIdService) {
         this.rorMasterService = rorMasterService;
         this.civicDetailsService = civicDetailsService;
         this.addressService = addressService;
@@ -39,7 +37,7 @@ public class RorMasterController {
 
     @PostMapping("/create")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true", allowedHeaders = "*")
-    public ResponseEntity<Map<String, String>> createRorMasterRecord(@RequestBody RorMasterDTO rorMasterDTO) {
+    public ResponseEntity<RorResponseDTO> createRorMasterRecord(@RequestBody RorMasterDTO rorMasterDTO) {
 
         // Step 1: Create the RorMaster entry and get the generated UUID
         RorMaster savedRorMaster = rorMasterService.saveRorMaster(rorMasterDTO.getRorMasterCoreDTO());
@@ -52,49 +50,23 @@ public class RorMasterController {
         rorMasterService.saveAddresses(rorMasterDTO.getAddressDTO(), rorMasterId);
 
         // Step 4: Save all FamilyMembers
-        rorMasterDTO.getFamilyMembers().forEach(familyMemberDTO -> {
-            System.out.println(familyMemberDTO);
-            FamilyMembers familyMember = FamilyMembers.builder()
-                    .rorMasterId(rorMasterId)
-                    .title(familyMemberDTO.getTitle())
-                    .firstName(familyMemberDTO.getFirstName())
-                    .middleName(familyMemberDTO.getMiddleName())
-                    .lastName(familyMemberDTO.getLastName())
-                    .occupation(familyMemberDTO.getOccupation())
-                    .relationWithHOF(familyMemberDTO.getRelationWithHOF())
-                    .dateOfBirth(familyMemberDTO.getDateOfBirth())
-                    .gender(familyMemberDTO.getGender())
-                    .isHeadOfFamily(familyMemberDTO.isHeadOfFamily())
-                    .phoneNumber(familyMemberDTO.getPhoneNumber())
-                    .educationQualification(familyMemberDTO.getEducationQualification())
-                    .religion(familyMemberDTO.getReligion())
-                    .identityProof(familyMemberDTO.getIdentityProof())
-                    .idNumber(familyMemberDTO.getIdNumber())
-                    .build();
-            familyMembersService.saveFamilyMember(familyMember, rorMasterId);
-        });
         rorMasterService.saveAllFamilyMembers(rorMasterDTO, rorMasterId);
 
         // Generate the unique ROR number based on the saved data
         String newRorNumber = rorIdService.generateRorId();
 
-        // Step 4: Save generated e-rorId using the rorMasterId
-        RorId rorId= RorId.builder()
+        // Step 5: Save generated e-rorId using the rorMasterId
+        RorId rorId = RorId.builder()
                 .rorMasterId(rorMasterId)
-                .rorId(newRorNumber)
-        // Redirect the user to the success page with the ROR Master ID
-        return ResponseEntity.status(HttpStatus.FOUND)  // 302 Found (redirect)
-                .header("Location", newRorNumber) // Redirect to the success page
-                .build();
-        rorIdService.saveRorId(rorId, rorMasterId);
+                .rorId(newRorNumber).build();
+        RorId id = rorIdService.saveRorId(rorId, rorMasterId);
+        RorResponseDTO rorResponseDTO = new RorResponseDTO();
+        rorResponseDTO.setRorId(id.getRorId());
+        rorResponseDTO.setRorMasterId(id.getRorMasterId().toString());
 
-
-        // Create a response map
-        Map<String, String> response = new HashMap<>();
-        response.put("eRorNumber", newRorNumber);
 
         // Return the response map as JSON
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(rorResponseDTO, HttpStatus.OK);
     }
 
     // GET endpoint to fetch ROR and family members

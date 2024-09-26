@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface WardFamilyCounter_Repository extends JpaRepository<WardFamilyCounter, Integer> {
+public interface WardFamilyCounterRepository extends JpaRepository<WardFamilyCounter, Integer> {
 
     //Find by ward number
     Optional<WardFamilyCounter> findByWardNumber(int wardNumber);

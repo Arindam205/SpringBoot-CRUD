@@ -1,11 +1,10 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
-import com.Test1RorApplication.RORApplicationTesting.Service.RorId_Service;
+import com.Test1RorApplication.RORApplicationTesting.Service.RorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
@@ -13,7 +12,7 @@ import java.util.UUID;
 @Controller
 public class RorId_Controller_Test {
     @Autowired
-    RorId_Service rorIdService;
+    RorIdService rorIdService;
 
     /**
      * Endpoint to generate a new ROR ID for a specific ward and family

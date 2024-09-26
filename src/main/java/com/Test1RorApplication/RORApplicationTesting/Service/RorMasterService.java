@@ -43,23 +43,6 @@ public class RorMasterService {
         return rorMasterCoreService.saveRorMaster(rorMaster);
     }
 
-    // Method to generate a unique ROR number
-    public String generateRorNumber(RorMaster rorMaster) {
-        // Example ROR number format: 16AMC0000001
-        String stateCode = "16";  // Fixed state code
-        String municipalCorporationCode = "AMC";  // Fixed code for Agartala Municipal Corporation
-
-        // Count the total records and use it to generate the family number part
-        long familyCount = rorMasterRepository.count();  // Get the count of saved records
-        String familyId = String.format("%07d", familyCount + 1);  // Generate a zero-padded family ID
-
-        // Concatenate the parts to form the ROR number
-        String rorNumber = stateCode + municipalCorporationCode + familyId;
-
-        // You can now associate this ROR number with the `RorMaster` object if needed
-        return rorNumber;
-    }
-
     // New method to fetch RorMaster by UUID
     public RorMaster getRorMasterById(UUID rorMasterId) {
         Optional<RorMaster> rorMaster = rorMasterRepository.findById(rorMasterId);
@@ -107,7 +90,7 @@ public class RorMasterService {
                     .relationWithHOF(familyMemberDTO.getRelationWithHOF())
                     .dateOfBirth(familyMemberDTO.getDateOfBirth())
                     .gender(familyMemberDTO.getGender())
-                    .headOfFamily(familyMemberDTO.isHeadOfFamily())
+                    .isHeadOfFamily(familyMemberDTO.isHeadOfFamily())
                     .phoneNumber(familyMemberDTO.getPhoneNumber())
                     .educationQualification(familyMemberDTO.getEducationQualification())
                     .religion(familyMemberDTO.getReligion())

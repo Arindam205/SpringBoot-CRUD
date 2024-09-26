@@ -1,7 +1,7 @@
 package com.Test1RorApplication.RORApplicationTesting.Service;
 
 import com.Test1RorApplication.RORApplicationTesting.Model.WardFamilyCounter;
-import com.Test1RorApplication.RORApplicationTesting.Repository.WardFamilyCounter_Repository;
+import com.Test1RorApplication.RORApplicationTesting.Repository.WardFamilyCounterRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class WardFamilyCounter_Service {
+public class WardFamilyCounterService {
 
     @Autowired
-    WardFamilyCounter_Repository wardFamilyCounterRepository;
+    WardFamilyCounterRepository wardFamilyCounterRepository;
 
     /**
      * Finds the WardCounter for the specified ward, or initializes it if it doesn't exist.
