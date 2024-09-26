@@ -1,6 +1,8 @@
 package com.Test1RorApplication.RORApplicationTesting;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,9 +50,11 @@ public class RorMasterDTO {
             private String lastName;
             private String occupation;
             private String relationWithHOF;
+            private boolean isHeadOfFamily;
+            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
             private LocalDate dateOfBirth;
             private String gender;  // Ensure consistent naming with the model
-            private boolean isHeadOfFamily;
+            //private boolean isHeadOfFamily;
             private String phoneNumber;
             private String educationQualification;
             private String religion;

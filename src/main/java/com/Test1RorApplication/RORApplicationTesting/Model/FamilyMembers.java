@@ -43,7 +43,7 @@ public class FamilyMembers {
     private String relationWithHOF;
 
     @Column(nullable = false)
-    private boolean headOfFamily;
+    private boolean isHeadOfFamily;
 
     @Column(nullable = false)
     private LocalDate dateOfBirth;

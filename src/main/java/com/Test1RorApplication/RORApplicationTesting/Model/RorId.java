@@ -1,10 +1,7 @@
 package com.Test1RorApplication.RORApplicationTesting.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -13,6 +10,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class RorId {
 
     @Id
@@ -23,8 +21,5 @@ public class RorId {
     private String rorId;  // The generated e-ROR ID
 
     @Column(nullable = false)
-    private UUID rorMasterId;  // Reference to HeadOfFamily UUID
-
-    @Column(nullable = false)
-    private int wardNumber;  // Store the ward number for querying
+    private UUID rorMasterId;  // Reference to rorMaster UUID
 }
