@@ -17,7 +17,6 @@ import java.util.UUID;
 @Service
 public class RorMasterService {
 
-
     @Autowired
     private RorMasterRepository rorMasterRepository;
 
@@ -90,7 +89,7 @@ public class RorMasterService {
                     .relationWithHOF(familyMemberDTO.getRelationWithHOF())
                     .dateOfBirth(familyMemberDTO.getDateOfBirth())
                     .gender(familyMemberDTO.getGender())
-                    .isHeadOfFamily(familyMemberDTO.isHeadOfFamily())
+                    .headOfFamily(familyMemberDTO.isHeadOfFamily())
                     .phoneNumber(familyMemberDTO.getPhoneNumber())
                     .educationQualification(familyMemberDTO.getEducationQualification())
                     .religion(familyMemberDTO.getReligion())

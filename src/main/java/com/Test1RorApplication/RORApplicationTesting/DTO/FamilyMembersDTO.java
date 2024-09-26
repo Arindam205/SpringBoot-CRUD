@@ -20,7 +20,7 @@ public class FamilyMembersDTO {
     private String relationWithHOF;
     private LocalDate dateOfBirth;
     private String gender;
-    private boolean isHeadOfFamily;
+    private boolean headOfFamily;
     private String phoneNumber;
     private String educationQualification;
     private String religion;
