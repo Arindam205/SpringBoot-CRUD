@@ -12,9 +12,6 @@ import java.util.List;
 @Data
 @Builder
 public class RorMasterDTO {
-    private RORMasterCoreDTO rorMasterCoreDTO;
-    private CivicDetailsDTO civicDetailsDTO;
-    private AddressDTO addressDTO;
-    private List<FamilyMembersDTO> familyMembers;
+
 }
 

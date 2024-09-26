@@ -26,7 +26,7 @@ public class RorId_Controller_Test {
     @GetMapping("/generate")
     public String generateRorId(@RequestParam int wardNumber, @RequestParam UUID rorMasterId, Model model) {
         // Generate the new ROR ID using the service
-        String newRorId = rorIdService.generateRorId(rorMasterId);
+        String newRorId = rorIdService.generateRorId();
 
         // Add data to the model for Thymeleaf view
         model.addAttribute("name", "Mr Akash");  // Hardcoded for now

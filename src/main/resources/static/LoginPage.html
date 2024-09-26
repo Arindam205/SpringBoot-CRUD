@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ROR Sign-in user</title>
+    <style>
+        /* Existing CSS remains the same */
+
+            *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            background: #ffffff;
+        }
+
+        input,
+        button {
+            border: none;
+            outline: none;
+            background: none;
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+        }
+
+        .tip {
+            font-size: 20px;
+            margin: 40px auto 50px;
+            text-align: center;
+        }
+
+        .cont {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            width: 900px;
+            height: 550px;
+            margin: 0 auto 100px;
+            background: #fff;
+            box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);
+        }
+
+        .form {
+            position: relative;
+            width: 640px;
+            height: 100%;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+            padding: 50px 30px 0;
+        }
+
+        .sub-cont {
+            overflow: hidden;
+            position: absolute;
+            left: 640px;
+            top: 0;
+            width: 900px;
+            height: 100%;
+            padding-left: 260px;
+            background: #fff;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        .cont.s--signup .sub-cont {
+            -webkit-transform: translate3d(-640px, 0, 0);
+            transform: translate3d(-640px, 0, 0);
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            width: 260px;
+            height: 36px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        linkPage {
+            display: block;
+            margin: 0 auto;
+            width: 260px;
+            height: 36px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .img {
+            overflow: hidden;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100%;
+            padding-top: 360px;
+        }
+
+        .img:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 900px;
+            height: 100%;
+            background-image: url("ext.jpg");
+            opacity: .8;
+            background-size: cover;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        .img:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .cont.s--signup .img:before {
+            -webkit-transform: translate3d(640px, 0, 0);
+            transform: translate3d(640px, 0, 0);
+        }
+
+        .img__text {
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 50px;
+            width: 100%;
+            padding: 0 20px;
+            text-align: center;
+            color: #fff;
+            -webkit-transition: -webkit-transform 1.2s ease-in-out;
+            transition: -webkit-transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out;
+            transition: transform 1.2s ease-in-out, -webkit-transform 1.2s ease-in-out;
+        }
+
+        .img__text h2 {
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .img__text p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cont.s--signup .img__text.m--up {
+            -webkit-transform: translateX(520px);
+            transform: translateX(520px);
+        }
+
+        .img__text.m--in {
+            -webkit-transform: translateX(-520px);
+            transform: translateX(-520px);
+        }
+
+        .cont.s--signup .img__text.m--in {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        .img__btn {
+            overflow: hidden;
+            z-index: 2;
+            position: relative;
+            width: 100px;
+            height: 36px;
+            margin: 0 auto;
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .img__btn:after {
+            content: '';
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            border-radius: 30px;
+        }
+
+        .img__btn span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: -webkit-transform 1.2s;
+            transition: -webkit-transform 1.2s;
+            transition: transform 1.2s;
+            transition: transform 1.2s, -webkit-transform 1.2s;
+        }
+
+        .img__btn span.m--in {
+            -webkit-transform: translateY(-72px);
+            transform: translateY(-72px);
+        }
+
+        .cont.s--signup .img__btn span.m--in {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .cont.s--signup .img__btn span.m--up {
+            -webkit-transform: translateY(72px);
+            transform: translateY(72px);
+        }
+
+        h2 {
+            width: 100%;
+            font-size: 26px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            width: 260px;
+            margin: 25px auto 0;
+            text-align: center;
+        }
+
+        label span {
+            font-size: 12px;
+            color: #cfcfcf;
+            text-transform: uppercase;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            padding-bottom: 5px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .forgot-pass {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #cfcfcf;
+        }
+
+        .submit {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: #d4af7a;
+            text-transform: uppercase;
+        }
+
+        .fb-btn {
+            border: 2px solid #d3dae9;
+            color: #8fa1c7;
+        }
+
+        .fb-btn span {
+            font-weight: bold;
+            color: #455a81;
+        }
+
+        .sign-in {
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+        }
+
+        .cont.s--signup .sign-in {
+            -webkit-transition-timing-function: ease-in-out;
+            transition-timing-function: ease-in-out;
+            -webkit-transition-duration: 1.2s;
+            transition-duration: 1.2s;
+            -webkit-transform: translate3d(640px, 0, 0);
+            transform: translate3d(640px, 0, 0);
+        }
+
+        .sign-up {
+            -webkit-transform: translate3d(-900px, 0, 0);
+            transform: translate3d(-900px, 0, 0);
+        }
+
+        .cont.s--signup .sign-up {
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+
+</head>
+
+<body>
+<br><br>
+<div class="cont">
+    <div class="form sign-in">
+        <h2>Welcome</h2>
+        <label>
+            <span>User Name</span>
+            <input type="text" id="signin-userName" required />
+        </label>
+        <label>
+            <span>Password</span>
+            <input type="password" id="signin-password" required />
+        </label>
+        <!-- <p class="forgot-pass">Forgot password?</p> -->
+        <button type="button" class="submit" onclick="signIn()">Sign In</button>
+        <!-- Button modified to a link -->
+        <!-- <a  class="linkPage" href="file:///home/subhrajit/Downloads/ROR-Application%20pages/Ror_Frontend_Pages/Registration_admin.html" class="submit admin-link">Sign In as Admin</a>
+         -->
+        <!-- <button type="button" class="submit" onclick="redirectToAdmin()">Sign In as Admin</button> -->
+
+    </div>
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img__text m--up">
+                <h3>Don't have an account? Please Register!</h3>
+            </div>
+            <div class="img__text m--in">
+                <h3>If you already have an account, just sign in.</h3>
+            </div>
+            <div class="img__btn">
+                <span class="m--up">Register</span>
+                <span class="m--in">Sign In</span>
+            </div>
+        </div>
+        <div class="form sign-up">
+            <h2>Create your Account</h2>
+            <label>
+                <span>Name</span>
+                <input type="text" id="signup-name" required />
+            </label>
+            <label>
+                <span>Email</span>
+                <input type="email" id="signup-email" required />
+            </label>
+            <label>
+                <span>Phone Number</span>
+                <input type="text" id="signup-phone" required />
+            </label>
+            <label>
+                <span>Ward Number</span>
+                <input type="text" id="signup-ward" required />
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" id="signup-password" onkeyup="checkPasswordStrength()" required />
+                <div id="password-strength-status"></div>
+            </label>
+            <button type="button" class="submit" onclick="signUp()">Sign Up</button>
+            <div id="signup-message"></div> <!-- To display success or error messages -->
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.img__btn').addEventListener('click', function() {
+        document.querySelector('.cont').classList.toggle('s--signup');
+    });
+
+    // Sign In functionality
+    async function signIn() {
+        const username = document.getElementById("signin-userName").value;
+        const password = document.getElementById("signin-password").value;
+
+        const data = {
+            username: username,
+            password: password
+        };
+
+        try {
+            fetch('http://localhost:8080/api/v1/auth/signin', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+    credentials: 'include'
+})
+.then(response => {
+    // Always attempt to parse the JSON response
+    return response.json().then(result => ({
+        status: response.status,  // Get the status for further checking
+        ok: response.ok,          // Check if the request was successful
+        body: result              // Parse the body of the response
+    }));
+})
+.then(({ ok, body, status }) => {
+    if (ok) {
+        // Handle success (status 200-299)
+        alert("Sign in successful!");
+        // Handle success logic here
+    } else {
+        // Handle non-OK response (errors)
+        alert(`Error: ${body.message || 'An error occurred'} (status: ${status})`);
+    }
+})
+.catch(error => {
+    // Handle any network or unexpected errors
+    alert("Sign in failed. Please try again.");
+    console.error('Error during sign in:', error);
+});
+        } catch (error) {
+            alert("Sign in failed. Please try again.");
+        }
+    }
+
+    // Sign Up functionality
+    async function signUp() {
+        const name = document.getElementById("signup-name").value;
+        const email = document.getElementById("signup-email").value;
+        const phone = document.getElementById("signup-phone").value;
+        const ward = document.getElementById("signup-ward").value;
+        const password = document.getElementById("signup-password").value;
+
+        const data = {
+            username: name,
+            email: email,
+            phNumber: phone,
+            wardNumber: ward,
+            password: password
+        };
+
+
+        try {
+            const response = await fetch('http://127.0.0.1:8080/api/v1/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                credentials: 'include'
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                document.getElementById("signup-message").innerHTML = "Account created successfully!";
+                document.getElementById("signup-message").style.color = "green";
+            } else {
+                document.getElementById("signup-message").innerHTML = "Error: " + result.message;
+                document.getElementById("signup-message").style.color = "red";
+            }
+        } catch (error) {
+            document.getElementById("signup-message").innerHTML = "Failed to register. Please try again.";
+            document.getElementById("signup-message").style.color = "red";
+        }
+    }
+
+    function redirectToAdmin() {
+        window.location.href = "file:///home/subhrajit/Downloads/ROR-Application%20pages/Ror_Frontend_Pages/Registration_admin.html";
+    }
+
+    // Password strength checker
+    function checkPasswordStrength() {
+        var password = document.getElementById("signup-password").value;
+        var strengthStatus = document.getElementById("password-strength-status");
+        var strength = 0;
+
+        if (password.length >= 8) strength += 1;
+        if (/[A-Z]/.test(password)) strength += 1;
+        if (/[a-z]/.test(password)) strength += 1;
+        if (/[0-9]/.test(password)) strength += 1;
+        if (/[\W]/.test(password)) strength += 1;
+
+        switch (strength) {
+            case 0:
+                strengthStatus.style.color = "red";
+                strengthStatus.innerHTML = "Password is very weak";
+                break;
+            case 1:
+            case 2:
+                strengthStatus.style.color = "orange";
+                strengthStatus.innerHTML = "Password is weak";
+                break;
+            case 3:
+                strengthStatus.style.color = "yellow";
+                strengthStatus.innerHTML = "Password is medium";
+                break;
+            case 4:
+                strengthStatus.style.color = "lightgreen";
+                strengthStatus.innerHTML = "Password is strong";
+                break;
+            case 5:
+                strengthStatus.style.color = "green";
+                strengthStatus.innerHTML = "Password is very strong";
+                break;
+        }
+    }
+</script>
+</body>
+
+</html>

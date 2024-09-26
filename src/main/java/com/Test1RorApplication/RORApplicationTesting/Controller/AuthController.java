@@ -19,6 +19,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
+    @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
         authService.signup(registerRequest);
         return new ResponseEntity<>("Registration Successful", HttpStatus.OK);
@@ -30,8 +31,9 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
+    @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest loginRequest) {
-        return new ResponseEntity<>(authService.login(loginRequest), HttpStatus.FOUND);
+        return new ResponseEntity<>(authService.login(loginRequest), HttpStatus.OK);
     }
 
 

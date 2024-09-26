@@ -11,6 +11,6 @@ import java.util.UUID;
 public interface RorIdRepository extends JpaRepository<RorId, UUID> {
 
     //Find all RorId by ward number
-    List<RorId> findByWardNumber(int wardNumber);
+    //List<RorId> findByWardNumber(int wardNumber);
 
 }

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMC e-ROR Acknowledgment</title>
+
+    <!-- Minimal and sleek styles for an official document look -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            color: #000;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h3, h4 {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .panel {
+            margin-top: 20px;
+        }
+
+        .panel-primary {
+            border: 1px solid #000;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .form-title {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .row .col {
+            width: 48%;
+        }
+
+        .form-group {
+            margin: 0;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+        }
+
+        /* Table styles for Family Member Details */
+        .gridview {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .gridview th, .gridview td {
+            border: 1px solid #000;
+            padding: 10px; /* Adjusted padding for better spacing */
+            text-align: left;
+        }
+
+        .gridview th {
+            background-color: #f1f1f1;
+        }
+
+        /* Equal width for Name and Relation columns */
+        .gridview th, .gridview td {
+            width: 50%; /* Each column takes up 50% of the table */
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Styles for print */
+        @media print {
+            .btn-print {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- JS for printing the document -->
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <!-- AMC Logo and title -->
+    <img src="path_to_logo/amclogo.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">
+    <h2>AGARTALA MUNICIPAL CORPORATION</h2>
+    <h3>e-ROR Acknowledgment Slip</h3>
+
+    <!-- e-ROR Details Section -->
+    <div class="panel panel-primary">
+        <h4 class="form-title">e-ROR DETAILS</h4>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>e-ROR Number:</label>
+                    <span>16AMC1234567</span>
+                </div>
+                <div class="form-group">
+                    <label>Full Name of Head of Family:</label>
+                    <span>John Doe</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Ward Number:</label>
+                    <span>12</span>
+                </div>
+                <div class="form-group">
+                    <label>Ration Card Number:</label>
+                    <span>RC123456</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Mobile Number:</label>
+                    <span>+91 9876543210</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Generated on Date:</label>
+                    <span>25-09-2024</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family Members Details Section -->
+    <div class="panel panel-primary">
+        <h4 class="form-title">FAMILY MEMBERS DETAILS</h4>
+        <table class="gridview">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Relation with Head of Family</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>Member 1</td><td>Relation 1</td></tr>
+            <tr><td>Member 2</td><td>Relation 2</td></tr>
+            <tr><td>Member 3</td><td>Relation 3</td></tr>
+            <tr><td>Member 4</td><td>Relation 4</td></tr>
+            <tr><td>Member 5</td><td>Relation 5</td></tr>
+            <tr><td>Member 6</td><td>Relation 6</td></tr>
+            <tr><td>Member 7</td><td>Relation 7</td></tr>
+            <tr><td>Member 8</td><td>Relation 8</td></tr>
+            <tr><td>Member 9</td><td>Relation 9</td></tr>
+            <tr><td>Member 10</td><td>Relation 10</td></tr>
+            <tr><td>Member 11</td><td>Relation 11</td></tr>
+            <tr><td>Member 12</td><td>Relation 12</td></tr>
+            <tr><td>Member 13</td><td>Relation 13</td></tr>
+            <tr><td>Member 14</td><td>Relation 14</td></tr>
+            <tr><td>Member 15</td><td>Relation 15</td></tr>
+            <tr><td>Member 16</td><td>Relation 16</td></tr>
+            <tr><td>Member 17</td><td>Relation 17</td></tr>
+            <tr><td>Member 18</td><td>Relation 18</td></tr>
+            <tr><td>Member 19</td><td>Relation 19</td></tr>
+            <tr><td>Member 20</td><td>Relation 20</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="footer-note">
+        This is a computer-generated document. No signature is required.
+    </div>
+
+    <!-- Print button -->
+    <button class="btn-print" onclick="printPage()">Print</button>
+</div>
+
+</body>
+</html>
