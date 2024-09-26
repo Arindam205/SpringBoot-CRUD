@@ -18,8 +18,7 @@ public class CivicDetailsController {
 
     @PostMapping("/add/{rorMasterId}")
     public ResponseEntity<CivicDetails> addCivicDetails(@RequestBody CivicDetails civicDetails, @RequestHeader UUID rorMasterId){
-        CivicDetails newCivicDetails = civicDetailsService.saveCivicDetails(civicDetails, rorMasterId);
-
+        CivicDetails newCivicDetails = civicDetailsService.saveCivicDetail(civicDetails, rorMasterId);
         return new ResponseEntity<>(newCivicDetails, HttpStatus.CREATED);
     }
 }

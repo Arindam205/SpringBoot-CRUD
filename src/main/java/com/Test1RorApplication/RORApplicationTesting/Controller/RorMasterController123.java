@@ -21,8 +21,9 @@ public class RorMasterController123 {
     @PostMapping
     public ResponseEntity<RorMaster> createFamily(@RequestBody RorMaster master) {
         // Use the injected instance of the service
-        RorMaster newRorMaster = rorMasterService.saveRorMaster(master);  // Correct instance usage
-        return new ResponseEntity<>(newRorMaster, HttpStatus.CREATED);
+        //RorMaster newRorMaster = rorMasterService.saveRorMaster(master);  // Correct instance usage
+        //return new ResponseEntity<>(newRorMaster, HttpStatus.CREATED);
+        return null;
     }
 }
 

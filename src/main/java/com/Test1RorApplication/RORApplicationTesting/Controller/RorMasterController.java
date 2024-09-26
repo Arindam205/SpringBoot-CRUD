@@ -4,7 +4,7 @@ import com.Test1RorApplication.RORApplicationTesting.Model.Address;
 import com.Test1RorApplication.RORApplicationTesting.Model.CivicDetails;
 import com.Test1RorApplication.RORApplicationTesting.Model.FamilyMembers;
 import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;
-import com.Test1RorApplication.RORApplicationTesting.RorMasterDTO;
+import com.Test1RorApplication.RORApplicationTesting.DTO.RorMasterDTO;
 import com.Test1RorApplication.RORApplicationTesting.SuccessDTO;
 import com.Test1RorApplication.RORApplicationTesting.Service.AddressService;
 import com.Test1RorApplication.RORApplicationTesting.Service.CivicDetailsService;
@@ -40,66 +40,24 @@ public class RorMasterController {
     @PostMapping("/create")
     public ResponseEntity<String> createRecord(@RequestBody RorMasterDTO rorMasterDTO) {
         // Step 1: Create the RorMaster entry and get the generated UUID
-        RorMaster rorMaster = RorMaster.builder()
-                .oldRorId(rorMasterDTO.getOldRorId())
-                .rationCardNumber(rorMasterDTO.getRationCardNumber())
-                .familyIncome(rorMasterDTO.getFamilyIncome())
-                .build();
-
-        RorMaster savedRorMaster = rorMasterService.saveRorMaster(rorMaster);
+        RorMaster savedRorMaster = rorMasterService.saveRorMaster(rorMasterDTO.getRorMasterCoreDTO());
         UUID rorMasterId = savedRorMaster.getRorMasterId();
 
         // Step 2: Save CivicDetails using the rorMasterId
-        CivicDetails civicDetails = CivicDetails.builder()
-                .rorMasterId(rorMasterId)
-                .electricityConnection(rorMasterDTO.getElectricityConnection())
-                .septicTankSewerageConnection(rorMasterDTO.getSepticTankSewerageConnection())
-                .constructionType(rorMasterDTO.getConstructionType())
-                .build();
-        civicDetailsService.saveCivicDetails(civicDetails, rorMasterId);
+        rorMasterService.saveCivilDetails(rorMasterDTO.getCivicDetailsDTO(), rorMasterId);
 
         // Step 3: Save Address using the rorMasterId
-        Address address = Address.builder()
-                .rorMasterId(rorMasterId)
-                .gisPropertyId(rorMasterDTO.getGisPropertyId())
-                .wardNumber(rorMasterDTO.getWardNumber())
-                .locality(rorMasterDTO.getLocality())
-                .subLocality(rorMasterDTO.getSubLocality())
-                .roadName(rorMasterDTO.getRoadName())
-                .postOfficeName(rorMasterDTO.getPostOfficeName())
-                .pinCode(rorMasterDTO.getPinCode())
-                .policeStation(rorMasterDTO.getPoliceStation())
-                .build();
-        addressService.saveAddress(address, rorMasterId);
+        rorMasterService.saveAddresses(rorMasterDTO.getAddressDTO(), rorMasterId);
 
         // Step 4: Save all FamilyMembers
-        rorMasterDTO.getFamilyMembers().forEach(familyMemberDTO -> {
-            FamilyMembers familyMember = FamilyMembers.builder()
-                    .rorMasterId(rorMasterId)
-                    .title(familyMemberDTO.getTitle())
-                    .firstName(familyMemberDTO.getFirstName())
-                    .middleName(familyMemberDTO.getMiddleName())
-                    .lastName(familyMemberDTO.getLastName())
-                    .occupation(familyMemberDTO.getOccupation())
-                    .relationWithHOF(familyMemberDTO.getRelationWithHOF())
-                    .dateOfBirth(familyMemberDTO.getDateOfBirth())
-                    .gender(familyMemberDTO.getGender())
-                    .headOfFamily(familyMemberDTO.isHeadOfFamily())
-                    .phoneNumber(familyMemberDTO.getPhoneNumber())
-                    .educationQualification(familyMemberDTO.getEducationQualification())
-                    .religion(familyMemberDTO.getReligion())
-                    .identityProof(familyMemberDTO.getIdentityProof())
-                    .idNumber(familyMemberDTO.getIdNumber())
-                    .build();
-            familyMembersService.saveFamilyMember(familyMember, rorMasterId);
-        });
+        rorMasterService.saveAllFamilyMembers(rorMasterDTO, rorMasterId);
 
         // Generate the unique ROR number based on the saved data
         String newRorNumber = rorMasterService.generateRorNumber(savedRorMaster);
 
         // Redirect the user to the success page with the ROR Master ID
         return ResponseEntity.status(HttpStatus.FOUND)  // 302 Found (redirect)
-                .header("Location", "/success/" + rorMasterId) // Redirect to the success page
+                .header("Location", newRorNumber) // Redirect to the success page
                 .build();
     }
 

@@ -11,7 +11,4 @@ import java.util.UUID;
 @Repository
 public interface RorMasterRepository extends JpaRepository<RorMaster, UUID> {
 
-    //Optional<RorMaster> findById(UUID rorMasterId);
-
-    List<FamilyMembers> findByRorMasterId(UUID rorMasterId);
 }
