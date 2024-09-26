@@ -1,19 +1,17 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 import com.Test1RorApplication.RORApplicationTesting.DTO.RorResponseDTO;
+import com.Test1RorApplication.RORApplicationTesting.DTO.SuccessDTO;
 import com.Test1RorApplication.RORApplicationTesting.Model.*;
 import com.Test1RorApplication.RORApplicationTesting.Service.*;
-import com.Test1RorApplication.RORApplicationTesting.Model.FamilyMembers;
 import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RorMasterDTO;
-import com.Test1RorApplication.RORApplicationTesting.SuccessDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/rorMaster")
@@ -73,18 +71,7 @@ public class RorMasterController {
     @GetMapping("/success/{rorMasterId}")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true", allowedHeaders = "*")
     public ResponseEntity<SuccessDTO> getRorSuccessPage(@PathVariable UUID rorMasterId) {
-        // Fetch ROR details
-        RorMaster rorMaster = rorMasterService.getRorMasterById(rorMasterId);
-        // Fetch family members details
-        List<FamilyMembers> familyMembers = familyMembersService.getFamilyMembersByRorMasterId(rorMasterId);
-
-        // Create a DTO for the success page
-        SuccessDTO successDTO = new SuccessDTO();
-        successDTO.setRorId(rorMaster.getERorId());
-        successDTO.setFamilyMembers(familyMembers.stream()
-                .map(FamilyMembers::getFirstName) // Collect the names of family members
-                .collect(Collectors.toList()));
-
-        return new ResponseEntity<>(successDTO, HttpStatus.OK);
+        SuccessDTO successDTO = rorMasterService.getSuccessDTO(rorMasterId);
+        return ResponseEntity.ok(successDTO);
     }
 }
