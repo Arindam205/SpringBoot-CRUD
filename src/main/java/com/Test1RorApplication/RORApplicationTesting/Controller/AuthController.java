@@ -18,13 +18,6 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/signup")
-    @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
-    public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
-        authService.signup(registerRequest);
-        return new ResponseEntity<>("Registration Successful", HttpStatus.OK);
-    }
-
     @PutMapping("/accountVerification/")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
         return new ResponseEntity<>("Account activated successfully", HttpStatus.OK);

@@ -1,9 +1,11 @@
 package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 import com.Test1RorApplication.RORApplicationTesting.DTO.DEOResponse;
+import com.Test1RorApplication.RORApplicationTesting.DTO.RegisterRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.SearchRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.SearchRequestType;
 import com.Test1RorApplication.RORApplicationTesting.Service.AdminService;
+import com.Test1RorApplication.RORApplicationTesting.Service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +18,11 @@ public class AdminController {
 
     private final AdminService adminService;
 
-    public AdminController(AdminService adminService) {
+    private final AuthService authService;
+
+    public AdminController(AdminService adminService, AuthService authService) {
         this.adminService = adminService;
+        this.authService = authService;
     }
 
     @GetMapping("/list-deos")
@@ -28,6 +33,13 @@ public class AdminController {
     @PutMapping("/deos/{id}/toggle-active")
     public ResponseEntity<String> toggleActive(@PathVariable UUID id) {
         return new ResponseEntity<>(adminService.toggleIsActive(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
+    public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
+        authService.signup(registerRequest);
+        return new ResponseEntity<>("Registration Successful", HttpStatus.OK);
     }
 
     @PostMapping("/family-search")

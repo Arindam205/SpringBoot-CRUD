@@ -34,8 +34,8 @@ public class Users {
 
     private Instant created;
 
-    private boolean isAdmin;
-    private boolean isActive;
+    private boolean admin;
+    private boolean active;
 
     @Column(nullable = false, unique = true)
     private long phNumber;
