@@ -1,520 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>ROR Form</title>-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<div class="container mt-5">-->
-<!--    <form id="rorForm">-->
-<!--        <div id="accordion">-->
-
-<!--            &lt;!&ndash; RorMaster Details Section &ndash;&gt;-->
-<!--            <div class="card">-->
-<!--                <div class="card-header" id="headingRorMaster">-->
-<!--                    <h5 class="mb-0">-->
-<!--                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseRorMaster" aria-expanded="true" aria-controls="collapseRorMaster">-->
-<!--                            RorMaster Details-->
-<!--                        </button>-->
-<!--                    </h5>-->
-<!--                </div>-->
-<!--                <div id="collapseRorMaster" class="collapse show" aria-labelledby="headingRorMaster" data-parent="#accordion">-->
-<!--                    <div class="card-body">-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Old ROR ID</label>-->
-<!--                            <input type="text" class="form-control" id="oldRorId" placeholder="Enter Old ROR ID">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Ration Card Number</label>-->
-<!--                            <input type="text" class="form-control" id="rationCardNumber" placeholder="Enter Ration Card Number">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Family Income</label>-->
-<!--                            <input type="number" class="form-control" id="familyIncome" placeholder="Enter Family Income">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Civic Details Section &ndash;&gt;-->
-<!--            <div class="card">-->
-<!--                <div class="card-header" id="headingCivicDetails">-->
-<!--                    <h5 class="mb-0">-->
-<!--                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseCivicDetails" aria-expanded="false" aria-controls="collapseCivicDetails">-->
-<!--                            Civic Details-->
-<!--                        </button>-->
-<!--                    </h5>-->
-<!--                </div>-->
-<!--                <div id="collapseCivicDetails" class="collapse show" aria-labelledby="headingCivicDetails" data-parent="#accordion">-->
-<!--                    <div class="card-body">-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Electricity Connection</label>-->
-<!--                            <input type="text" class="form-control" id="electricityConnection" placeholder="Enter Electricity Connection Status">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Septic Tank/Sewerage Connection</label>-->
-<!--                            <input type="text" class="form-control" id="septicTankSewerageConnection" placeholder="Enter Septic Tank/Sewerage Connection Status">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Construction Type</label>-->
-<!--                            <input type="text" class="form-control" id="constructionType" placeholder="Enter Construction Type">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Family Members Section &ndash;&gt;-->
-<!--            <div class="card">-->
-<!--                <div class="card-header" id="headingFamilyMembers">-->
-<!--                    <h5 class="mb-0">-->
-<!--                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFamilyMembers" aria-expanded="false" aria-controls="collapseFamilyMembers">-->
-<!--                            Family Members-->
-<!--                        </button>-->
-<!--                    </h5>-->
-<!--                </div>-->
-<!--                <div id="collapseFamilyMembers" class="collapse show" aria-labelledby="headingFamilyMembers" data-parent="#accordion">-->
-<!--                    <div class="card-body">-->
-<!--                        <div id="family-members-container">-->
-<!--                            &lt;!&ndash; Family Member Form Fields &ndash;&gt;-->
-<!--                            <div class="family-member-section">-->
-<!--                                <div class="form-row">-->
-<!--                                    <div class="form-group col-md-3">-->
-<!--                                        <label>Title</label>-->
-<!--                                        <select class="form-control title">-->
-<!--                                            <option value="Mr.">Mr.</option>-->
-<!--                                            <option value="Mrs.">Mrs.</option>-->
-<!--                                            <option value="Ms.">Ms.</option>-->
-<!--                                            <option value="Dr.">Dr.</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-3">-->
-<!--                                        <label>First Name</label>-->
-<!--                                        <input type="text" class="form-control first-name" placeholder="Enter First Name">-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-3">-->
-<!--                                        <label>Middle Name</label>-->
-<!--                                        <input type="text" class="form-control middle-name" placeholder="Enter Middle Name">-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-3">-->
-<!--                                        <label>Last Name</label>-->
-<!--                                        <input type="text" class="form-control last-name" placeholder="Enter Last Name">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <div class="form-row">-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Relation with Head of Family</label>-->
-<!--                                        <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF">-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Date of Birth</label>-->
-<!--                                        <input type="date" class="form-control date-of-birth">-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Gender</label>-->
-<!--                                        <select class="form-control gender">-->
-<!--                                            <option value="Male">Male</option>-->
-<!--                                            <option value="Female">Female</option>-->
-<!--                                            <option value="Transgender">Transgender</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <div class="form-row">-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Phone Number</label>-->
-<!--                                        <input type="text" class="form-control phone-number" placeholder="Enter Phone Number">-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Education Qualification</label>-->
-<!--                                        <select class="form-control education-qualification">-->
-<!--                                            <option value="School(I-VII)">School (I-VII)</option>-->
-<!--                                            <option value="School(IX-X)">School (IX-X)</option>-->
-<!--                                            <option value="School(X-XII)">School (X-XII)</option>-->
-<!--                                            <option value="Graduate">Graduate</option>-->
-<!--                                            <option value="Post Graduate">Post Graduate</option>-->
-<!--                                            <option value="Phd">PhD</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Is Head of Family</label>-->
-<!--                                        &lt;!&ndash; Updated value attributes to "Yes" and "No" &ndash;&gt;-->
-<!--                                        <select class="form-control is-head-of-family">-->
-<!--                                            <option value="Yes">Yes</option>-->
-<!--                                            <option value="No" selected>No</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <div class="form-row">-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Religion</label>-->
-<!--                                        <select class="form-control religion">-->
-<!--                                            <option value="Hindu">Hindu</option>-->
-<!--                                            <option value="Muslim">Muslim</option>-->
-<!--                                            <option value="Christian">Christian</option>-->
-<!--                                            <option value="Sikh">Sikh</option>-->
-<!--                                            <option value="Buddhists">Buddhists</option>-->
-<!--                                            <option value="Jains">Jains</option>-->
-<!--                                            <option value="Zoroastrianism">Zoroastrianism</option>-->
-<!--                                            <option value="Others">Others</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Identity Proof</label>-->
-<!--                                        <select class="form-control identity-proof">-->
-<!--                                            <option value="Aadhar Card">Aadhar Card</option>-->
-<!--                                            <option value="PAN Card">PAN Card</option>-->
-<!--                                            <option value="Voter ID">Voter ID</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>ID Number</label>-->
-<!--                                        <input type="text" class="form-control id-number" placeholder="Enter ID Number">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                &lt;!&ndash; Added Occupation Field &ndash;&gt;-->
-<!--                                <div class="form-row">-->
-<!--                                    <div class="form-group col-md-4">-->
-<!--                                        <label>Occupation</label>-->
-<!--                                        <select class="form-control occupation">-->
-<!--                                            <option value="Government service">Government service</option>-->
-<!--                                            <option value="Private job">Private job</option>-->
-<!--                                            <option value="Self Employed">Self Employed</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <button type="button" class="btn btn-danger remove-family-member">Remove</button>-->
-<!--                                <hr>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Add More button &ndash;&gt;-->
-<!--                        <div class="form-group mt-4">-->
-<!--                            <button type="button" class="btn btn-success" id="addFamilyMember">Add More</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Address Details Section &ndash;&gt;-->
-<!--            <div class="card">-->
-<!--                <div class="card-header" id="headingAddressDetails">-->
-<!--                    <h5 class="mb-0">-->
-<!--                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAddressDetails" aria-expanded="false" aria-controls="collapseAddressDetails">-->
-<!--                            Address Details-->
-<!--                        </button>-->
-<!--                    </h5>-->
-<!--                </div>-->
-<!--                <div id="collapseAddressDetails" class="collapse show" aria-labelledby="headingAddressDetails" data-parent="#accordion">-->
-<!--                    <div class="card-body">-->
-<!--                        &lt;!&ndash; Address Details Form Fields &ndash;&gt;-->
-<!--                        <div class="form-group">-->
-<!--                            <label>GIS Property ID</label>-->
-<!--                            <input type="text" class="form-control" id="gisPropertyId" placeholder="Enter GIS Property ID">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Ward Number</label>-->
-<!--                            <input type="number" class="form-control" id="wardNumber" placeholder="Enter Ward Number">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Locality</label>-->
-<!--                            <input type="text" class="form-control" id="locality" placeholder="Enter Locality">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Sub-Locality</label>-->
-<!--                            <input type="text" class="form-control" id="subLocality" placeholder="Enter Sub-Locality">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Post Office</label>-->
-<!--                            <input type="text" class="form-control" id="postOfficeName" placeholder="Enter Post Office">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Police Station</label>-->
-<!--                            <input type="text" class="form-control" id="policeStation" placeholder="Enter Police Station">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Road Name</label>-->
-<!--                            <input type="text" class="form-control" id="roadName" placeholder="Enter Road Name">-->
-<!--                        </div>-->
-<!--                        <div class="form-group">-->
-<!--                            <label>PIN Code</label>-->
-<!--                            <input type="text" class="form-control" id="pinCode" placeholder="Enter PIN Code">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Submit Button &ndash;&gt;-->
-<!--            <div class="form-group mt-4">-->
-<!--                <button type="submit" class="btn btn-primary">Submit Form</button>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; JavaScript Dependencies &ndash;&gt;-->
-<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
-<!--&lt;!&ndash; Include Popper.js and Bootstrap JS &ndash;&gt;-->
-<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
-
-<!--<script>-->
-<!--    // Initialize event listeners for the initial family member-->
-<!--    document.addEventListener('DOMContentLoaded', function() {-->
-<!--        const initialMemberSection = document.querySelector('.family-member-section');-->
-<!--        attachEventListeners(initialMemberSection);-->
-<!--    });-->
-
-<!--    // Function to attach all necessary event listeners to a family member section-->
-<!--    function attachEventListeners(memberSection) {-->
-<!--        const removeButton = memberSection.querySelector('.remove-family-member');-->
-
-<!--        removeButton.addEventListener('click', function() {-->
-<!--            removeFamilyMember(memberSection);-->
-<!--        });-->
-<!--    }-->
-
-<!--    // Add a new family member section dynamically-->
-<!--    function addFamilyMember() {-->
-<!--        let familyMemberSection = document.createElement('div');-->
-<!--        familyMemberSection.className = 'family-member-section mt-3';-->
-
-<!--        familyMemberSection.innerHTML = `-->
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col-md-3">-->
-<!--                    <label>Title</label>-->
-<!--                    <select class="form-control title">-->
-<!--                        <option value="Mr.">Mr.</option>-->
-<!--                        <option value="Mrs.">Mrs.</option>-->
-<!--                        <option value="Ms.">Ms.</option>-->
-<!--                        <option value="Dr.">Dr.</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-3">-->
-<!--                    <label>First Name</label>-->
-<!--                    <input type="text" class="form-control first-name" placeholder="Enter First Name">-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-3">-->
-<!--                    <label>Middle Name</label>-->
-<!--                    <input type="text" class="form-control middle-name" placeholder="Enter Middle Name">-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-3">-->
-<!--                    <label>Last Name</label>-->
-<!--                    <input type="text" class="form-control last-name" placeholder="Enter Last Name">-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Relation with Head of Family</label>-->
-<!--                    <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF">-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Date of Birth</label>-->
-<!--                    <input type="date" class="form-control date-of-birth">-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Gender</label>-->
-<!--                    <select class="form-control gender">-->
-<!--                        <option value="Male">Male</option>-->
-<!--                        <option value="Female">Female</option>-->
-<!--                        <option value="Transgender">Transgender</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Phone Number</label>-->
-<!--                    <input type="text" class="form-control phone-number" placeholder="Enter Phone Number">-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Education Qualification</label>-->
-<!--                    <select class="form-control education-qualification">-->
-<!--                        <option value="School(I-VII)">School (I-VII)</option>-->
-<!--                        <option value="School(IX-X)">School (IX-X)</option>-->
-<!--                        <option value="School(X-XII)">School (X-XII)</option>-->
-<!--                        <option value="Graduate">Graduate</option>-->
-<!--                        <option value="Post Graduate">Post Graduate</option>-->
-<!--                        <option value="Phd">PhD</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Is Head of Family</label>-->
-<!--                    &lt;!&ndash; Updated value attributes to "Yes" and "No" &ndash;&gt;-->
-<!--                    <select class="form-control is-head-of-family">-->
-<!--                        <option value="Yes">Yes</option>-->
-<!--                        <option value="No" selected>No</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Religion</label>-->
-<!--                    <select class="form-control religion">-->
-<!--                        <option value="Hindu">Hindu</option>-->
-<!--                        <option value="Muslim">Muslim</option>-->
-<!--                        <option value="Christian">Christian</option>-->
-<!--                        <option value="Sikh">Sikh</option>-->
-<!--                        <option value="Buddhists">Buddhists</option>-->
-<!--                        <option value="Jains">Jains</option>-->
-<!--                        <option value="Zoroastrianism">Zoroastrianism</option>-->
-<!--                        <option value="Others">Others</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Identity Proof</label>-->
-<!--                    <select class="form-control identity-proof">-->
-<!--                        <option value="Aadhar Card">Aadhar Card</option>-->
-<!--                        <option value="PAN Card">PAN Card</option>-->
-<!--                        <option value="Voter ID">Voter ID</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>ID Number</label>-->
-<!--                    <input type="text" class="form-control id-number" placeholder="Enter ID Number">-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Added Occupation Field &ndash;&gt;-->
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col-md-4">-->
-<!--                    <label>Occupation</label>-->
-<!--                    <select class="form-control occupation">-->
-<!--                        <option value="Government service">Government service</option>-->
-<!--                        <option value="Private job">Private job</option>-->
-<!--                        <option value="Self Employed">Self Employed</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <button type="button" class="btn btn-danger remove-family-member">Remove</button>-->
-<!--            <hr>-->
-<!--        `;-->
-
-<!--        document.getElementById('family-members-container').appendChild(familyMemberSection);-->
-
-<!--        // Attach event listeners to the new member section-->
-<!--        attachEventListeners(familyMemberSection);-->
-<!--    }-->
-
-<!--    // Remove a family member section-->
-<!--    function removeFamilyMember(memberSection) {-->
-<!--        memberSection.remove();-->
-<!--    }-->
-
-<!--    // Attach the addFamilyMember function to the Add More button-->
-<!--    document.getElementById('addFamilyMember').addEventListener('click', addFamilyMember);-->
-
-<!--    // Form submission logic-->
-<!--    document.querySelector('form').addEventListener('submit', function(event) {-->
-<!--        event.preventDefault(); // Prevent default form submission behavior-->
-
-<!--        // Collect Family Members data dynamically-->
-<!--        const familyMembers = [];-->
-
-<!--        document.querySelectorAll('.family-member-section').forEach(function(memberSection) {-->
-<!--            const selectElement = memberSection.querySelector('.is-head-of-family');-->
-<!--            const isHeadOfFamilyValue = selectElement.value;-->
-<!--            console.log('Selected value:', isHeadOfFamilyValue); // For debugging-->
-
-<!--            // Adjusted comparison to match "Yes" and "No"-->
-<!--            const isHeadOfFamily = isHeadOfFamilyValue === 'Yes';-->
-
-<!--            const member = {-->
-<!--                title: memberSection.querySelector('.title').value,-->
-<!--                firstName: memberSection.querySelector('.first-name').value,-->
-<!--                middleName: memberSection.querySelector('.middle-name').value,-->
-<!--                lastName: memberSection.querySelector('.last-name').value,-->
-<!--                relationWithHOF: memberSection.querySelector('.relation-with-hof').value,-->
-<!--                dateOfBirth: memberSection.querySelector('.date-of-birth').value,-->
-<!--                gender: memberSection.querySelector('.gender').value,-->
-<!--                phoneNumber: memberSection.querySelector('.phone-number').value,-->
-<!--                educationQualification: memberSection.querySelector('.education-qualification').value,-->
-<!--                isHeadOfFamily: isHeadOfFamily,-->
-<!--                religion: memberSection.querySelector('.religion').value,-->
-<!--                identityProof: memberSection.querySelector('.identity-proof').value,-->
-<!--                idNumber: memberSection.querySelector('.id-number').value,-->
-<!--                occupation: memberSection.querySelector('.occupation').value,-->
-<!--            };-->
-<!--            familyMembers.push(member);-->
-<!--        });-->
-
-<!--        // Collecting other form data-->
-<!--        const oldRorId = document.getElementById('oldRorId').value;-->
-<!--        const rationCardNumber = document.getElementById('rationCardNumber').value;-->
-<!--        const familyIncome = document.getElementById('familyIncome').value;-->
-<!--        const electricityConnection = document.getElementById('electricityConnection').value;-->
-<!--        const septicTankSewerageConnection = document.getElementById('septicTankSewerageConnection').value;-->
-<!--        const constructionType = document.getElementById('constructionType').value;-->
-<!--        const gisPropertyId = document.getElementById('gisPropertyId').value;-->
-<!--        const wardNumber = document.getElementById('wardNumber').value;-->
-<!--        const locality = document.getElementById('locality').value;-->
-<!--        const subLocality = document.getElementById('subLocality').value;-->
-<!--        const roadName = document.getElementById('roadName').value;-->
-<!--        const postOfficeName = document.getElementById('postOfficeName').value;-->
-<!--        const policeStation = document.getElementById('policeStation').value;-->
-<!--        const pinCode = document.getElementById('pinCode').value;-->
-
-<!--        // JSON body to send-->
-<!--        const requestBody = {-->
-<!--            oldRorId: oldRorId,-->
-<!--            rationCardNumber: rationCardNumber,-->
-<!--            familyIncome: familyIncome,-->
-<!--            electricityConnection: electricityConnection,-->
-<!--            septicTankSewerageConnection: septicTankSewerageConnection,-->
-<!--            constructionType: constructionType,-->
-<!--            gisPropertyId: gisPropertyId,-->
-<!--            wardNumber: parseInt(wardNumber, 10),-->
-<!--            locality: locality,-->
-<!--            subLocality: subLocality,-->
-<!--            roadName: roadName,-->
-<!--            postOfficeName: postOfficeName,-->
-<!--            pinCode: parseInt(pinCode, 10),-->
-<!--            policeStation: policeStation,-->
-<!--            familyMembers: familyMembers,-->
-<!--        };-->
-
-<!--        // Sending the request-->
-<!--        fetch('http://localhost:8080/api/v1/rorMaster/create', {-->
-<!--            method: 'POST',-->
-<!--            headers: {-->
-<!--                'Content-Type': 'application/json'-->
-<!--            },-->
-<!--            body: JSON.stringify(requestBody),-->
-<!--        })-->
-<!--        .then(response => {-->
-<!--            if (response.ok) {-->
-<!--                return response.json(); // Return the response as JSON if successful-->
-
-<!--            } else {-->
-<!--                throw new Error('Error submitting form');-->
-<!--            }-->
-<!--        })-->
-<!--        .then(data => {-->
-<!--            // Handle success-->
-<!--            sessionStorage.setItem('eRorNumber', data.eRorNumber);-->
-<!--            // Redirect to acknowledgment page (if needed)-->
-<!--            window.location.href = 'acknowledgment.html';-->
-<!--        })-->
-<!--        .catch(error => {-->
-<!--            console.error('There was an error:', error);-->
-<!--            alert('There was an error submitting the form. Please try again.');-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -541,15 +24,15 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Old ROR ID</label>
-                            <input type="text" class="form-control" id="oldRorId" placeholder="Enter Old ROR ID">
+                            <input type="text" class="form-control" id="oldRorId" placeholder="Enter Old ROR ID" required>
                         </div>
                         <div class="form-group">
                             <label>Ration Card Number</label>
-                            <input type="text" class="form-control" id="rationCardNumber" placeholder="Enter Ration Card Number">
+                            <input type="text" class="form-control" id="rationCardNumber" placeholder="Enter Ration Card Number" required>
                         </div>
                         <div class="form-group">
                             <label>Family Income</label>
-                            <input type="number" class="form-control" id="familyIncome" placeholder="Enter Family Income">
+                            <input type="number" class="form-control" id="familyIncome" placeholder="Enter Family Income" required>
                         </div>
                     </div>
                 </div>
@@ -568,15 +51,15 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Electricity Connection</label>
-                            <input type="text" class="form-control" id="electricityConnection" placeholder="Enter Electricity Connection Status">
+                            <input type="text" class="form-control" id="electricityConnection" placeholder="Enter Electricity Connection Status" required>
                         </div>
                         <div class="form-group">
                             <label>Septic Tank/Sewerage Connection</label>
-                            <input type="text" class="form-control" id="septicTankSewerageConnection" placeholder="Enter Septic Tank/Sewerage Connection Status">
+                            <input type="text" class="form-control" id="septicTankSewerageConnection" placeholder="Enter Septic Tank/Sewerage Connection Status" required>
                         </div>
                         <div class="form-group">
                             <label>Construction Type</label>
-                            <input type="text" class="form-control" id="constructionType" placeholder="Enter Construction Type">
+                            <input type="text" class="form-control" id="constructionType" placeholder="Enter Construction Type" required>
                         </div>
                     </div>
                 </div>
@@ -599,7 +82,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label>Title</label>
-                                        <select class="form-control title">
+                                        <select class="form-control title" required>
                                             <option value="Mr.">Mr.</option>
                                             <option value="Mrs.">Mrs.</option>
                                             <option value="Ms.">Ms.</option>
@@ -608,7 +91,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>First Name</label>
-                                        <input type="text" class="form-control first-name" placeholder="Enter First Name">
+                                        <input type="text" class="form-control first-name" placeholder="Enter First Name" required>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Middle Name</label>
@@ -616,22 +99,22 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Last Name</label>
-                                        <input type="text" class="form-control last-name" placeholder="Enter Last Name">
+                                        <input type="text" class="form-control last-name" placeholder="Enter Last Name" required>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label>Relation with Head of Family</label>
-                                        <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF">
+                                        <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Date of Birth</label>
-                                        <input type="date" class="form-control date-of-birth">
+                                        <input type="date" class="form-control date-of-birth" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Gender</label>
-                                        <select class="form-control gender">
+                                        <select class="form-control gender" required>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Transgender">Transgender</option>
@@ -642,11 +125,11 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label>Phone Number</label>
-                                        <input type="text" class="form-control phone-number" placeholder="Enter Phone Number">
+                                        <input type="text" class="form-control phone-number" placeholder="Enter Phone Number" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Education Qualification</label>
-                                        <select class="form-control education-qualification">
+                                        <select class="form-control education-qualification" required>
                                             <option value="School(I-VII)">School (I-VII)</option>
                                             <option value="School(IX-X)">School (IX-X)</option>
                                             <option value="School(X-XII)">School (X-XII)</option>
@@ -657,8 +140,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Is Head of Family</label>
-                                        <!-- Updated value attributes to "Yes" and "No" -->
-                                        <select class="form-control is-head-of-family">
+                                        <select class="form-control is-head-of-family" required>
                                             <option value="Yes">Yes</option>
                                             <option value="No" selected>No</option>
                                         </select>
@@ -668,7 +150,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label>Religion</label>
-                                        <select class="form-control religion">
+                                        <select class="form-control religion" required>
                                             <option value="Hindu">Hindu</option>
                                             <option value="Muslim">Muslim</option>
                                             <option value="Christian">Christian</option>
@@ -681,7 +163,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Identity Proof</label>
-                                        <select class="form-control identity-proof">
+                                        <select class="form-control identity-proof" required>
                                             <option value="Aadhar Card">Aadhar Card</option>
                                             <option value="PAN Card">PAN Card</option>
                                             <option value="Voter ID">Voter ID</option>
@@ -689,7 +171,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>ID Number</label>
-                                        <input type="text" class="form-control id-number" placeholder="Enter ID Number">
+                                        <input type="text" class="form-control id-number" placeholder="Enter ID Number" required>
                                     </div>
                                 </div>
 
@@ -697,7 +179,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label>Occupation</label>
-                                        <select class="form-control occupation">
+                                        <select class="form-control occupation" required>
                                             <option value="Government service">Government service</option>
                                             <option value="Private job">Private job</option>
                                             <option value="Self Employed">Self Employed</option>
@@ -716,61 +198,61 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Address Details Section -->
-            <div class="card">
-                <div class="card-header" id="headingAddressDetails">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAddressDetails" aria-expanded="false" aria-controls="collapseAddressDetails">
-                            Address Details
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseAddressDetails" class="collapse show" aria-labelledby="headingAddressDetails" data-parent="#accordion">
-                    <div class="card-body">
-                        <!-- Address Details Form Fields -->
-                        <div class="form-group">
-                            <label>GIS Property ID</label>
-                            <input type="text" class="form-control" id="gisPropertyId" placeholder="Enter GIS Property ID">
-                        </div>
-                        <div class="form-group">
-                            <label>Ward Number</label>
-                            <input type="number" class="form-control" id="wardNumber" placeholder="Enter Ward Number">
-                        </div>
-                        <div class="form-group">
-                            <label>Locality</label>
-                            <input type="text" class="form-control" id="locality" placeholder="Enter Locality">
-                        </div>
-                        <div class="form-group">
-                            <label>Sub-Locality</label>
-                            <input type="text" class="form-control" id="subLocality" placeholder="Enter Sub-Locality">
-                        </div>
-                        <div class="form-group">
-                            <label>Post Office</label>
-                            <input type="text" class="form-control" id="postOfficeName" placeholder="Enter Post Office">
-                        </div>
-                        <div class="form-group">
-                            <label>Police Station</label>
-                            <input type="text" class="form-control" id="policeStation" placeholder="Enter Police Station">
-                        </div>
-                        <div class="form-group">
-                            <label>Road Name</label>
-                            <input type="text" class="form-control" id="roadName" placeholder="Enter Road Name">
-                        </div>
-                        <div class="form-group">
-                            <label>PIN Code</label>
-                            <input type="text" class="form-control" id="pinCode" placeholder="Enter PIN Code">
+                <!-- Address Details Section -->
+                <div class="card">
+                    <div class="card-header" id="headingAddressDetails">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAddressDetails" aria-expanded="false" aria-controls="collapseAddressDetails">
+                                Address Details
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseAddressDetails" class="collapse show" aria-labelledby="headingAddressDetails" data-parent="#accordion">
+                        <div class="card-body">
+                            <!-- Address Details Form Fields -->
+                            <div class="form-group">
+                                <label>GIS Property ID</label>
+                                <input type="text" class="form-control" id="gisPropertyId" placeholder="Enter GIS Property ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Ward Number</label>
+                                <input type="number" class="form-control" id="wardNumber" placeholder="Enter Ward Number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Locality</label>
+                                <input type="text" class="form-control" id="locality" placeholder="Enter Locality" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Sub-Locality</label>
+                                <input type="text" class="form-control" id="subLocality" placeholder="Enter Sub-Locality" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Post Office</label>
+                                <input type="text" class="form-control" id="postOfficeName" placeholder="Enter Post Office" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Police Station</label>
+                                <input type="text" class="form-control" id="policeStation" placeholder="Enter Police Station" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Road Name</label>
+                                <input type="text" class="form-control" id="roadName" placeholder="Enter Road Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PIN Code</label>
+                                <input type="text" class="form-control" id="pinCode" placeholder="Enter PIN Code" required>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Submit Button -->
-            <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary">Submit Form</button>
-            </div>
+                <!-- Submit Button -->
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                </div>
 
+            </div>
         </div>
     </form>
 </div>
@@ -806,7 +288,7 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label>Title</label>
-                    <select class="form-control title">
+                    <select class="form-control title" required>
                         <option value="Mr.">Mr.</option>
                         <option value="Mrs.">Mrs.</option>
                         <option value="Ms.">Ms.</option>
@@ -815,7 +297,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>First Name</label>
-                    <input type="text" class="form-control first-name" placeholder="Enter First Name">
+                    <input type="text" class="form-control first-name" placeholder="Enter First Name" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label>Middle Name</label>
@@ -823,22 +305,22 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>Last Name</label>
-                    <input type="text" class="form-control last-name" placeholder="Enter Last Name">
+                    <input type="text" class="form-control last-name" placeholder="Enter Last Name" required>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Relation with Head of Family</label>
-                    <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF">
+                    <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Date of Birth</label>
-                    <input type="date" class="form-control date-of-birth">
+                    <input type="date" class="form-control date-of-birth" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Gender</label>
-                    <select class="form-control gender">
+                    <select class="form-control gender" required>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Transgender">Transgender</option>
@@ -849,11 +331,11 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Phone Number</label>
-                    <input type="text" class="form-control phone-number" placeholder="Enter Phone Number">
+                    <input type="text" class="form-control phone-number" placeholder="Enter Phone Number" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Education Qualification</label>
-                    <select class="form-control education-qualification">
+                    <select class="form-control education-qualification" required>
                         <option value="School(I-VII)">School (I-VII)</option>
                         <option value="School(IX-X)">School (IX-X)</option>
                         <option value="School(X-XII)">School (X-XII)</option>
@@ -864,8 +346,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>Is Head of Family</label>
-                    <!-- Updated value attributes to "Yes" and "No" -->
-                    <select class="form-control is-head-of-family">
+                    <select class="form-control is-head-of-family" required>
                         <option value="Yes">Yes</option>
                         <option value="No" selected>No</option>
                     </select>
@@ -875,7 +356,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Religion</label>
-                    <select class="form-control religion">
+                    <select class="form-control religion" required>
                         <option value="Hindu">Hindu</option>
                         <option value="Muslim">Muslim</option>
                         <option value="Christian">Christian</option>
@@ -888,7 +369,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>Identity Proof</label>
-                    <select class="form-control identity-proof">
+                    <select class="form-control identity-proof" required>
                         <option value="Aadhar Card">Aadhar Card</option>
                         <option value="PAN Card">PAN Card</option>
                         <option value="Voter ID">Voter ID</option>
@@ -896,7 +377,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>ID Number</label>
-                    <input type="text" class="form-control id-number" placeholder="Enter ID Number">
+                    <input type="text" class="form-control id-number" placeholder="Enter ID Number" required>
                 </div>
             </div>
 
@@ -904,7 +385,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Occupation</label>
-                    <select class="form-control occupation">
+                    <select class="form-control occupation" required>
                         <option value="Government service">Government service</option>
                         <option value="Private job">Private job</option>
                         <option value="Self Employed">Self Employed</option>
@@ -930,6 +411,18 @@
     // Attach the addFamilyMember function to the Add More button
     document.getElementById('addFamilyMember').addEventListener('click', addFamilyMember);
 
+    // Function to get URL parameters
+    function getUrlParameters() {
+        const params = {};
+        window.location.search.substring(1).split("&").forEach(function(part) {
+            const [key, value] = part.split("=");
+            if (key) {
+                params[decodeURIComponent(key)] = decodeURIComponent(value);
+            }
+        });
+        return params;
+    }
+
     // Form submission logic
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent default form submission behavior
@@ -940,30 +433,24 @@
         document.querySelectorAll('.family-member-section').forEach(function(memberSection) {
             const selectElement = memberSection.querySelector('.is-head-of-family');
             const isHeadOfFamilyValue = selectElement.value;
-            console.log('Selected value:', isHeadOfFamilyValue); // For debugging
 
-            // Adjusted comparison to match "Yes" and "No"
-            alert(isHeadOfFamilyValue);
             const isHeadOfFamily = isHeadOfFamilyValue === 'Yes';
-            alert(isHeadOfFamily);
-
 
             const member = {
                 title: memberSection.querySelector('.title').value,
                 firstName: memberSection.querySelector('.first-name').value,
                 middleName: memberSection.querySelector('.middle-name').value,
                 lastName: memberSection.querySelector('.last-name').value,
-                isHeadOfFamily: isHeadOfFamily,
+                occupation: memberSection.querySelector('.occupation').value,
                 relationWithHOF: memberSection.querySelector('.relation-with-hof').value,
                 dateOfBirth: memberSection.querySelector('.date-of-birth').value,
                 gender: memberSection.querySelector('.gender').value,
+                headOfFamily: isHeadOfFamily, // Changed from isHeadOfFamily to headOfFamily
                 phoneNumber: memberSection.querySelector('.phone-number').value,
                 educationQualification: memberSection.querySelector('.education-qualification').value,
-                //isHeadOfFamily: isHeadOfFamily,
                 religion: memberSection.querySelector('.religion').value,
                 identityProof: memberSection.querySelector('.identity-proof').value,
                 idNumber: memberSection.querySelector('.id-number').value,
-                occupation: memberSection.querySelector('.occupation').value,
             };
             familyMembers.push(member);
         });
@@ -971,35 +458,41 @@
         // Collecting other form data
         const oldRorId = document.getElementById('oldRorId').value;
         const rationCardNumber = document.getElementById('rationCardNumber').value;
-        const familyIncome = document.getElementById('familyIncome').value;
+        const familyIncome = parseFloat(document.getElementById('familyIncome').value) || 0;
         const electricityConnection = document.getElementById('electricityConnection').value;
         const septicTankSewerageConnection = document.getElementById('septicTankSewerageConnection').value;
         const constructionType = document.getElementById('constructionType').value;
         const gisPropertyId = document.getElementById('gisPropertyId').value;
-        const wardNumber = document.getElementById('wardNumber').value;
+        const wardNumber = parseInt(document.getElementById('wardNumber').value, 10) || 0;
         const locality = document.getElementById('locality').value;
         const subLocality = document.getElementById('subLocality').value;
         const roadName = document.getElementById('roadName').value;
         const postOfficeName = document.getElementById('postOfficeName').value;
         const policeStation = document.getElementById('policeStation').value;
-        const pinCode = document.getElementById('pinCode').value;
+        const pinCode = parseInt(document.getElementById('pinCode').value, 10) || 0;
 
-        // JSON body to send
+        // JSON body to send with nested DTOs
         const requestBody = {
-            oldRorId: oldRorId,
-            rationCardNumber: rationCardNumber,
-            familyIncome: familyIncome,
-            electricityConnection: electricityConnection,
-            septicTankSewerageConnection: septicTankSewerageConnection,
-            constructionType: constructionType,
-            gisPropertyId: gisPropertyId,
-            wardNumber: parseInt(wardNumber, 10),
-            locality: locality,
-            subLocality: subLocality,
-            roadName: roadName,
-            postOfficeName: postOfficeName,
-            pinCode: parseInt(pinCode, 10),
-            policeStation: policeStation,
+            rorMasterCoreDTO: {
+                oldRorId: oldRorId,
+                rationCardNumber: rationCardNumber,
+                familyIncome: familyIncome
+            },
+            civicDetailsDTO: {
+                electricityConnection: electricityConnection,
+                septicTankSewerageConnection: septicTankSewerageConnection,
+                constructionType: constructionType
+            },
+            addressDTO: {
+                gisPropertyId: gisPropertyId,
+                wardNumber: wardNumber,
+                locality: locality,
+                subLocality: subLocality,
+                roadName: roadName,
+                postOfficeName: postOfficeName,
+                pinCode: pinCode,
+                policeStation: policeStation
+            },
             familyMembers: familyMembers,
         };
 
@@ -1020,9 +513,17 @@
         })
         .then(data => {
             // Handle success
-            sessionStorage.setItem('eRorNumber', data.eRorNumber);
-            // Redirect to acknowledgment page (if needed)
-            window.location.href = 'acknowledgment.html';
+            const rorId = data.rorId;
+            const rorMasterId = data.rorMasterId;
+
+            // Encode the parameters to ensure special characters are handled
+            const queryParams = new URLSearchParams({
+                rorId: rorId,
+                rorMasterId: rorMasterId
+            }).toString();
+
+            // Redirect to acknowledgment page with query parameters
+            window.location.href = `acknowledgment.html?${queryParams}`;
         })
         .catch(error => {
             console.error('There was an error:', error);
@@ -1033,4 +534,3 @@
 
 </body>
 </html>
-

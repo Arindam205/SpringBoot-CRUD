@@ -1,3 +1,136 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>AMC e-ROR Acknowledgment</title>-->
+
+<!--    &lt;!&ndash; Minimal and sleek styles for an official document look &ndash;&gt;-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Arial', sans-serif;-->
+<!--            font-size: 14px;-->
+<!--            color: #000;-->
+<!--            background-color: #fff;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            width: 60%;-->
+<!--            margin: 40px auto;-->
+<!--            padding: 20px;-->
+<!--            border: 1px solid #000;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        h2, h3, h4 {-->
+<!--            text-align: center;-->
+<!--            margin: 5px 0;-->
+<!--        }-->
+
+<!--        .panel {-->
+<!--            margin-top: 40px;-->
+<!--        }-->
+
+<!--        .panel-primary {-->
+<!--            border: 1px solid #000;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+
+<!--        .form-title {-->
+<!--            font-weight: bold;-->
+<!--            text-decoration: underline;-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        .form-group {-->
+<!--            margin: 0 auto;-->
+<!--            margin-bottom: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        label {-->
+<!--            font-weight: bold;-->
+<!--            display: block;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+
+<!--        .eror-number {-->
+<!--            font-size: 24px;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        .footer-note {-->
+<!--            margin-top: 40px;-->
+<!--            text-align: center;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        /* Styles for print */-->
+<!--        @media print {-->
+<!--            .btn-print {-->
+<!--                display: none;-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+
+<!--    &lt;!&ndash; JS for printing the document &ndash;&gt;-->
+<!--    <script>-->
+<!--        function printPage() {-->
+<!--            window.print();-->
+<!--        }-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    &lt;!&ndash; AMC Logo and title &ndash;&gt;-->
+<!--    <img src="LogoCorporation.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">-->
+<!--    <h2>AGARTALA MUNICIPAL CORPORATION</h2>-->
+<!--    <h3>e-ROR Acknowledgment Slip</h3>-->
+
+<!--    &lt;!&ndash; e-ROR Details Section &ndash;&gt;-->
+<!--    <div class="panel panel-primary">-->
+<!--        <h4 class="form-title">e-ROR NUMBER</h4>-->
+<!--        <div class="form-group">-->
+<!--            <label>Your e-ROR Number is:</label>-->
+<!--            <span class="eror-number"></span>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Footer Note &ndash;&gt;-->
+<!--    <div class="footer-note">-->
+<!--        This is a computer-generated document. No signature is required.-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Print button &ndash;&gt;-->
+<!--    <button class="btn-print" onclick="printPage()">Print</button>-->
+<!--</div>-->
+
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        // Retrieve eRorNumber from sessionStorage-->
+<!--        var eRorNumber = sessionStorage.getItem('eRorNumber');-->
+<!--        if (eRorNumber) {-->
+<!--            // Display the eRorNumber in the span-->
+<!--            document.querySelector('.eror-number').textContent = eRorNumber;-->
+<!--            // Optionally, remove it from sessionStorage if you don't need it anymore-->
+<!--            sessionStorage.removeItem('eRorNumber');-->
+<!--        } else {-->
+<!--            // Handle the case where eRorNumber is not available-->
+<!--            document.querySelector('.eror-number').textContent = 'No e-ROR Number found.';-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,8 +150,8 @@
         }
 
         .container {
-            width: 60%;
-            margin: 40px auto;
+            width: 80%;
+            margin: 0 auto;
             padding: 20px;
             border: 1px solid #000;
             border-radius: 8px;
@@ -31,41 +164,62 @@
         }
 
         .panel {
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .panel-primary {
             border: 1px solid #000;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
         }
 
         .form-title {
             font-weight: bold;
             text-decoration: underline;
-            text-align: center;
-            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .row .col {
+            width: 48%;
         }
 
         .form-group {
-            margin: 0 auto;
-            margin-bottom: 20px;
-            text-align: center;
+            margin: 0;
         }
 
         label {
             font-weight: bold;
             display: block;
-            margin-bottom: 10px;
         }
 
-        .eror-number {
-            font-size: 24px;
-            font-weight: bold;
+        /* Table styles for Family Member Details */
+        .gridview {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .gridview th, .gridview td {
+            border: 1px solid #000;
+            padding: 10px; /* Adjusted padding for better spacing */
+            text-align: left;
+        }
+
+        .gridview th {
+            background-color: #f1f1f1;
+        }
+
+        /* Equal width for Name and Relation columns */
+        .gridview th, .gridview td {
+            width: 50%; /* Each column takes up 50% of the table */
         }
 
         .footer-note {
-            margin-top: 40px;
+            margin-top: 20px;
             text-align: center;
             font-weight: bold;
         }
@@ -75,6 +229,24 @@
             .btn-print {
                 display: none;
             }
+        }
+
+        /* Loading Spinner Styles */
+        .spinner {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 2s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 
@@ -89,17 +261,65 @@
 
 <div class="container">
     <!-- AMC Logo and title -->
-    <img src="LogoCorporation.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">
+    <img src="path_to_logo/amclogo.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">
     <h2>AGARTALA MUNICIPAL CORPORATION</h2>
     <h3>e-ROR Acknowledgment Slip</h3>
 
     <!-- e-ROR Details Section -->
     <div class="panel panel-primary">
-        <h4 class="form-title">e-ROR NUMBER</h4>
-        <div class="form-group">
-            <label>Your e-ROR Number is:</label>
-            <span class="eror-number"></span>
+        <h4 class="form-title">e-ROR DETAILS</h4>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>e-ROR Number:</label>
+                    <span id="rorId">Loading...</span><div id="rorIdSpinner" class="spinner"></div>
+                </div>
+                <div class="form-group">
+                    <label>Full Name of Head of Family:</label>
+                    <span id="fullNameHof">Loading...</span><div id="fullNameHofSpinner" class="spinner"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Ward Number:</label>
+                    <span id="wardNumber">Loading...</span><div id="wardNumberSpinner" class="spinner"></div>
+                </div>
+                <div class="form-group">
+                    <label>Ration Card Number:</label>
+                    <span id="rationCardNumber">Loading...</span><div id="rationCardNumberSpinner" class="spinner"></div>
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label>Mobile Number:</label>
+                    <span id="mobileNumber">Loading...</span><div id="mobileNumberSpinner" class="spinner"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label>Generated on Date:</label>
+                    <span id="generatedDate">Loading...</span><div id="generatedDateSpinner" class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Family Members Details Section -->
+    <div class="panel panel-primary">
+        <h4 class="form-title">FAMILY MEMBERS DETAILS</h4>
+        <table class="gridview" id="familyMembersTable">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Relation with Head of Family</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Dynamic Family Members Rows Will Be Injected Here -->
+            </tbody>
+        </table>
     </div>
 
     <!-- Footer Note -->
@@ -111,20 +331,124 @@
     <button class="btn-print" onclick="printPage()">Print</button>
 </div>
 
+<!-- JavaScript to Populate the Acknowledgment Page -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Retrieve eRorNumber from sessionStorage
-        var eRorNumber = sessionStorage.getItem('eRorNumber');
-        if (eRorNumber) {
-            // Display the eRorNumber in the span
-            document.querySelector('.eror-number').textContent = eRorNumber;
-            // Optionally, remove it from sessionStorage if you don't need it anymore
-            sessionStorage.removeItem('eRorNumber');
-        } else {
-            // Handle the case where eRorNumber is not available
-            document.querySelector('.eror-number').textContent = 'No e-ROR Number found.';
+    // Function to get URL parameters
+    function getUrlParameters() {
+        const params = {};
+        const queryString = window.location.search.substring(1);
+        const regex = /([^&=]+)=([^&]*)/g;
+        let match;
+        while (match = regex.exec(queryString)) {
+            params[decodeURIComponent(match[1])] = decodeURIComponent(match[2].replace(/\+/g, ' '));
         }
+        return params;
+    }
+
+    // Function to format date as DD-MM-YYYY
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = getUrlParameters();
+        const rorMasterId = params.rorMasterId;
+
+        if (!rorMasterId) {
+            alert('ROR Master ID is missing in the URL parameters.');
+            return;
+        }
+
+        // Fetch data from the backend API
+        fetch(`http://localhost:8080/api/v1/rorMaster/success/${rorMasterId}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch acknowledgment data.');
+                }
+            })
+            .then(data => {
+                // Remove loading spinners
+                removeSpinners(['rorIdSpinner', 'fullNameHofSpinner', 'wardNumberSpinner', 'rationCardNumberSpinner', 'mobileNumberSpinner', 'generatedDateSpinner']);
+
+                // Populate e-ROR Details
+                document.getElementById('rorId').textContent = data.rorId || 'N/A';
+                document.getElementById('wardNumber').textContent = data.wardNumber !== undefined ? data.wardNumber : 'N/A';
+                document.getElementById('rationCardNumber').textContent = data.rationCardNumber || 'N/A';
+
+                // Set Generated on Date to current date
+                const today = new Date();
+                const formattedDate = formatDate(today.toISOString());
+                document.getElementById('generatedDate').textContent = formattedDate;
+
+                // Identify Head of Family
+                let headOfFamily = null;
+                if (Array.isArray(data.familyMembers)) {
+                    headOfFamily = data.familyMembers.find(member => member.relationWithHOF.toLowerCase() === 'self');
+                }
+
+                if (headOfFamily) {
+                    document.getElementById('fullNameHof').textContent = headOfFamily.fullName || 'N/A';
+                    document.getElementById('mobileNumber').textContent = headOfFamily.phoneNumber || 'N/A';
+                } else {
+                    document.getElementById('fullNameHof').textContent = 'N/A';
+                    document.getElementById('mobileNumber').textContent = 'N/A';
+                }
+
+                // Populate Family Members Table
+                const familyMembers = data.familyMembers || [];
+                const tableBody = document.querySelector('#familyMembersTable tbody');
+
+                // Clear existing rows if any
+                tableBody.innerHTML = '';
+
+                familyMembers.forEach(member => {
+                    const row = document.createElement('tr');
+
+                    // Create Name Cell
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = member.fullName || 'N/A';
+                    row.appendChild(nameCell);
+
+                    // Create Relation Cell
+                    const relationCell = document.createElement('td');
+                    relationCell.textContent = member.relationWithHOF || 'N/A';
+                    row.appendChild(relationCell);
+
+                    tableBody.appendChild(row);
+                });
+
+                // Handle case when there are no family members
+                if (familyMembers.length === 0) {
+                    const row = document.createElement('tr');
+                    const noDataCell = document.createElement('td');
+                    noDataCell.colSpan = 2;
+                    noDataCell.textContent = 'No family members found.';
+                    noDataCell.style.textAlign = 'center';
+                    row.appendChild(noDataCell);
+                    tableBody.appendChild(row);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while fetching acknowledgment data. Please try again later.');
+            });
     });
+
+    // Function to remove loading spinners after data is loaded
+    function removeSpinners(spinnerIds) {
+        spinnerIds.forEach(id => {
+            const spinner = document.getElementById(id);
+            if (spinner) {
+                spinner.remove();
+            }
+        });
+    }
 </script>
 
 </body>
