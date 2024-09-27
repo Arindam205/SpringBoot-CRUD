@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 @Service
 public class RorMasterService {
 
-
     @Autowired
     private RorMasterRepository rorMasterRepository;
     @Autowired
@@ -102,7 +101,7 @@ public class RorMasterService {
                     .relationWithHOF(familyMemberDTO.getRelationWithHOF())
                     .dateOfBirth(familyMemberDTO.getDateOfBirth())
                     .gender(familyMemberDTO.getGender())
-                    .isHeadOfFamily(familyMemberDTO.isHeadOfFamily())
+                    .headOfFamily(familyMemberDTO.isHeadOfFamily())
                     .phoneNumber(familyMemberDTO.getPhoneNumber())
                     .educationQualification(familyMemberDTO.getEducationQualification())
                     .religion(familyMemberDTO.getReligion())

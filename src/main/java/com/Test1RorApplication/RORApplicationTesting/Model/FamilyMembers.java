@@ -1,5 +1,6 @@
 package com.Test1RorApplication.RORApplicationTesting.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +44,8 @@ public class FamilyMembers {
     private String relationWithHOF;
 
     @Column(nullable = false)
-    private boolean isHeadOfFamily;
+    @JsonProperty
+    private boolean headOfFamily;
 
     @Column(nullable = false)
     private LocalDate dateOfBirth;
