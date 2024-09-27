@@ -35,7 +35,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setUsername(registerRequest.getUsername());
         user.setCreated(Instant.now());
-        user.setActive(false);
+        user.setActive(true);
         user.setAdmin(false);
         user.setPhNumber(registerRequest.getPhNumber());
         user.setWardNumber(registerRequest.getWardNumber());
@@ -53,6 +53,9 @@ public class AuthService {
     public AuthenticationResponse login(LoginRequest loginRequest) {
         Users user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + loginRequest.getUsername()));
+        if((!user.isAdmin() && loginRequest.isAdmin()) || (user.isAdmin() && !loginRequest.isAdmin())) {
+            return new AuthenticationResponse("-1", false);
+        }
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
         String token = jwtProvider.generateToken(userDetails);
