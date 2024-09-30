@@ -18,7 +18,7 @@ public class AdminService {
     private final UserRepository userRepository;
 
     public DEOResponse getAllDEOs() {
-        List<Users> users = userRepository.findByIsAdminFalse();
+        List<Users> users = userRepository.findByAdminFalse();
         return new DEOResponse(users);
     }
 
@@ -34,6 +34,4 @@ public class AdminService {
             throw new RuntimeException("User not found with ID: " + userId);
         }
     }
-
-
 }

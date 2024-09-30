@@ -15,4 +15,5 @@ public class RegisterRequest {
     private String password;
     private long phNumber;
     private int wardNumber;
+    private boolean active;
 }

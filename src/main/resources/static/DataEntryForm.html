@@ -507,6 +507,9 @@
         .then(response => {
             if (response.ok) {
                 return response.json(); // Return the response as JSON if successful
+
+                 // Clear the form
+                document.getElementById("rorForm").reset();
             } else {
                 throw new Error('Error submitting form');
             }

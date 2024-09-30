@@ -35,7 +35,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setUsername(registerRequest.getUsername());
         user.setCreated(Instant.now());
-        user.setActive(true);
+        user.setActive(registerRequest.isActive());
         user.setAdmin(false);
         user.setPhNumber(registerRequest.getPhNumber());
         user.setWardNumber(registerRequest.getWardNumber());

@@ -37,7 +37,7 @@ public class AdminController {
 
     @PostMapping("/register")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
-    public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
         authService.signup(registerRequest);
         return new ResponseEntity<>("Registration Successful", HttpStatus.OK);
     }

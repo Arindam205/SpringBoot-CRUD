@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<Users, UUID> {
     Optional<Users> findByUsername(String username);
 
-    List<Users> findByIsAdminFalse();
+    List<Users> findByAdminFalse();
 }
