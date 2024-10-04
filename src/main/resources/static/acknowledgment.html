@@ -1,135 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>AMC e-ROR Acknowledgment</title>-->
-
-<!--    &lt;!&ndash; Minimal and sleek styles for an official document look &ndash;&gt;-->
-<!--    <style>-->
-<!--        body {-->
-<!--            font-family: 'Arial', sans-serif;-->
-<!--            font-size: 14px;-->
-<!--            color: #000;-->
-<!--            background-color: #fff;-->
-<!--            margin: 0;-->
-<!--            padding: 0;-->
-<!--        }-->
-
-<!--        .container {-->
-<!--            width: 60%;-->
-<!--            margin: 40px auto;-->
-<!--            padding: 20px;-->
-<!--            border: 1px solid #000;-->
-<!--            border-radius: 8px;-->
-<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
-<!--        }-->
-
-<!--        h2, h3, h4 {-->
-<!--            text-align: center;-->
-<!--            margin: 5px 0;-->
-<!--        }-->
-
-<!--        .panel {-->
-<!--            margin-top: 40px;-->
-<!--        }-->
-
-<!--        .panel-primary {-->
-<!--            border: 1px solid #000;-->
-<!--            padding: 20px;-->
-<!--            border-radius: 8px;-->
-<!--        }-->
-
-<!--        .form-title {-->
-<!--            font-weight: bold;-->
-<!--            text-decoration: underline;-->
-<!--            text-align: center;-->
-<!--            margin-bottom: 20px;-->
-<!--        }-->
-
-<!--        .form-group {-->
-<!--            margin: 0 auto;-->
-<!--            margin-bottom: 20px;-->
-<!--            text-align: center;-->
-<!--        }-->
-
-<!--        label {-->
-<!--            font-weight: bold;-->
-<!--            display: block;-->
-<!--            margin-bottom: 10px;-->
-<!--        }-->
-
-<!--        .eror-number {-->
-<!--            font-size: 24px;-->
-<!--            font-weight: bold;-->
-<!--        }-->
-
-<!--        .footer-note {-->
-<!--            margin-top: 40px;-->
-<!--            text-align: center;-->
-<!--            font-weight: bold;-->
-<!--        }-->
-
-<!--        /* Styles for print */-->
-<!--        @media print {-->
-<!--            .btn-print {-->
-<!--                display: none;-->
-<!--            }-->
-<!--        }-->
-<!--    </style>-->
-
-<!--    &lt;!&ndash; JS for printing the document &ndash;&gt;-->
-<!--    <script>-->
-<!--        function printPage() {-->
-<!--            window.print();-->
-<!--        }-->
-<!--    </script>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--<div class="container">-->
-<!--    &lt;!&ndash; AMC Logo and title &ndash;&gt;-->
-<!--    <img src="LogoCorporation.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">-->
-<!--    <h2>AGARTALA MUNICIPAL CORPORATION</h2>-->
-<!--    <h3>e-ROR Acknowledgment Slip</h3>-->
-
-<!--    &lt;!&ndash; e-ROR Details Section &ndash;&gt;-->
-<!--    <div class="panel panel-primary">-->
-<!--        <h4 class="form-title">e-ROR NUMBER</h4>-->
-<!--        <div class="form-group">-->
-<!--            <label>Your e-ROR Number is:</label>-->
-<!--            <span class="eror-number"></span>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Footer Note &ndash;&gt;-->
-<!--    <div class="footer-note">-->
-<!--        This is a computer-generated document. No signature is required.-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Print button &ndash;&gt;-->
-<!--    <button class="btn-print" onclick="printPage()">Print</button>-->
-<!--</div>-->
-
-<!--<script>-->
-<!--    document.addEventListener('DOMContentLoaded', function() {-->
-<!--        // Retrieve eRorNumber from sessionStorage-->
-<!--        var eRorNumber = sessionStorage.getItem('eRorNumber');-->
-<!--        if (eRorNumber) {-->
-<!--            // Display the eRorNumber in the span-->
-<!--            document.querySelector('.eror-number').textContent = eRorNumber;-->
-<!--            // Optionally, remove it from sessionStorage if you don't need it anymore-->
-<!--            sessionStorage.removeItem('eRorNumber');-->
-<!--        } else {-->
-<!--            // Handle the case where eRorNumber is not available-->
-<!--            document.querySelector('.eror-number').textContent = 'No e-ROR Number found.';-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-
-<!--</body>-->
-<!--</html>-->
-
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -248,6 +116,40 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .button-4 {
+    appearance: none;
+    background-color: #40A578;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 40px;
+    width: 500px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+
+        /* Hide specific elements when printing */
+        @media print {
+         .no-print {
+        display: none;
+    }
+}
     </style>
 
     <!-- JS for printing the document -->
@@ -261,9 +163,9 @@
 
 <div class="container">
     <!-- AMC Logo and title -->
-    <img src="path_to_logo/amclogo.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">
+    <img src="LogoCorporation.png" alt="AMC Logo" style="display: block; margin: 0 auto; height: 100px;">
     <h2>AGARTALA MUNICIPAL CORPORATION</h2>
-    <h3>e-ROR Acknowledgment Slip</h3>
+    <h3>e-ROR Acknowledgment</h3>
 
     <!-- e-ROR Details Section -->
     <div class="panel panel-primary">
@@ -330,6 +232,14 @@
     <!-- Print button -->
     <button class="btn-print" onclick="printPage()">Print</button>
 </div>
+
+<div class="container no-print" style="text-align: center;">
+    <a class="button-4" role="button" href="registration_password_checker.html">Logout</a>
+    <a class="button-4" role="button" href="DataEntryForm.html">New Entry</a>
+</div>
+
+
+
 
 <!-- JavaScript to Populate the Acknowledgment Page -->
 <script>

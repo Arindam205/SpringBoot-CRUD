@@ -24,15 +24,15 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Old ROR ID</label>
-                            <input type="text" class="form-control" id="oldRorId" placeholder="Enter Old ROR ID" required>
+                            <input type="text" class="form-control" id="oldRorId"  maxLength="15" placeholder="Enter Old ROR ID" required>
                         </div>
                         <div class="form-group">
                             <label>Ration Card Number</label>
-                            <input type="text" class="form-control" id="rationCardNumber" placeholder="Enter Ration Card Number" required>
+                            <input type="text" class="form-control" id="rationCardNumber" maxlength="16" pattern="[A-Za-z0-9]{1,16}" placeholder="Enter Ration Card Number" required>
                         </div>
                         <div class="form-group">
                             <label>Family Income</label>
-                            <input type="number" class="form-control" id="familyIncome" placeholder="Enter Family Income" required>
+                            <input type="number" class="form-control" id="familyIncome"  maxlength="10" placeholder="Enter Family Income" required>
                         </div>
                     </div>
                 </div>
@@ -51,207 +51,216 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Electricity Connection</label>
-                            <input type="text" class="form-control" id="electricityConnection" placeholder="Enter Electricity Connection Status" required>
+                            <input type="text" class="form-control" id="electricityConnection" maxlength="16" pattern="[A-Za-z0-9]{1,16}" placeholder="Enter Electricity Connection Status" required>
                         </div>
                         <div class="form-group">
                             <label>Septic Tank/Sewerage Connection</label>
-                            <input type="text" class="form-control" id="septicTankSewerageConnection" placeholder="Enter Septic Tank/Sewerage Connection Status" required>
+                            <input type="text" class="form-control" id="septicTankSewerageConnection" maxlength="16" pattern="[A-Za-z0-9]{1,16}" placeholder="Enter Septic Tank/Sewerage Connection Status" required>
                         </div>
                         <div class="form-group">
                             <label>Construction Type</label>
-                            <input type="text" class="form-control" id="constructionType" placeholder="Enter Construction Type" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Family Members Section -->
-            <div class="card">
-                <div class="card-header" id="headingFamilyMembers">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFamilyMembers" aria-expanded="false" aria-controls="collapseFamilyMembers">
-                            Family Members
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseFamilyMembers" class="collapse show" aria-labelledby="headingFamilyMembers" data-parent="#accordion">
-                    <div class="card-body">
-                        <div id="family-members-container">
-                            <!-- Family Member Form Fields -->
-                            <div class="family-member-section">
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label>Title</label>
-                                        <select class="form-control title" required>
-                                            <option value="Mr.">Mr.</option>
-                                            <option value="Mrs.">Mrs.</option>
-                                            <option value="Ms.">Ms.</option>
-                                            <option value="Dr.">Dr.</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label>First Name</label>
-                                        <input type="text" class="form-control first-name" placeholder="Enter First Name" required>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label>Middle Name</label>
-                                        <input type="text" class="form-control middle-name" placeholder="Enter Middle Name">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label>Last Name</label>
-                                        <input type="text" class="form-control last-name" placeholder="Enter Last Name" required>
-                                    </div>
+                            <!-- Dropdown checklist for Construction Type -->
+                            <div class="dropdown-checklist">
+                                <input type="text" class="form-control" id="constructionType" placeholder="Select Construction Type" readonly>
+                                <div id="dropdown-list-construction" class="dropdown-list">
+                                    <label><input type="checkbox" value="Pucca"> Pucca</label>
+                                    <label><input type="checkbox" value="Kutcha"> Kutcha</label>
+                                    <label><input type="checkbox" value="Semi Pucca"> Semi Pucca</label>
                                 </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Relation with Head of Family</label>
-                                        <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Date of Birth</label>
-                                        <input type="date" class="form-control date-of-birth" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Gender</label>
-                                        <select class="form-control gender" required>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Transgender">Transgender</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Phone Number</label>
-                                        <input type="text" class="form-control phone-number" placeholder="Enter Phone Number" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Education Qualification</label>
-                                        <select class="form-control education-qualification" required>
-                                            <option value="School(I-VII)">School (I-VII)</option>
-                                            <option value="School(IX-X)">School (IX-X)</option>
-                                            <option value="School(X-XII)">School (X-XII)</option>
-                                            <option value="Graduate">Graduate</option>
-                                            <option value="Post Graduate">Post Graduate</option>
-                                            <option value="Phd">PhD</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Is Head of Family</label>
-                                        <select class="form-control is-head-of-family" required>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Religion</label>
-                                        <select class="form-control religion" required>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Muslim">Muslim</option>
-                                            <option value="Christian">Christian</option>
-                                            <option value="Sikh">Sikh</option>
-                                            <option value="Buddhists">Buddhists</option>
-                                            <option value="Jains">Jains</option>
-                                            <option value="Zoroastrianism">Zoroastrianism</option>
-                                            <option value="Others">Others</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>Identity Proof</label>
-                                        <select class="form-control identity-proof" required>
-                                            <option value="Aadhar Card">Aadhar Card</option>
-                                            <option value="PAN Card">PAN Card</option>
-                                            <option value="Voter ID">Voter ID</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label>ID Number</label>
-                                        <input type="text" class="form-control id-number" placeholder="Enter ID Number" required>
-                                    </div>
-                                </div>
-
-                                <!-- Added Occupation Field -->
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>Occupation</label>
-                                        <select class="form-control occupation" required>
-                                            <option value="Government service">Government service</option>
-                                            <option value="Private job">Private job</option>
-                                            <option value="Self Employed">Self Employed</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <button type="button" class="btn btn-danger remove-family-member">Remove</button>
-                                <hr>
                             </div>
                         </div>
-
-                        <!-- Add More button -->
-                        <div class="form-group mt-4">
-                            <button type="button" class="btn btn-success" id="addFamilyMember">Add More</button>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Address Details Section -->
+                <!-- Family Members Section -->
                 <div class="card">
-                    <div class="card-header" id="headingAddressDetails">
+                    <div class="card-header" id="headingFamilyMembers">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAddressDetails" aria-expanded="false" aria-controls="collapseAddressDetails">
-                                Address Details
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFamilyMembers" aria-expanded="false" aria-controls="collapseFamilyMembers">
+                                Family Members
                             </button>
                         </h5>
                     </div>
-                    <div id="collapseAddressDetails" class="collapse show" aria-labelledby="headingAddressDetails" data-parent="#accordion">
+                    <div id="collapseFamilyMembers" class="collapse show" aria-labelledby="headingFamilyMembers" data-parent="#accordion">
                         <div class="card-body">
-                            <!-- Address Details Form Fields -->
-                            <div class="form-group">
-                                <label>GIS Property ID</label>
-                                <input type="text" class="form-control" id="gisPropertyId" placeholder="Enter GIS Property ID" required>
+                            <div id="family-members-container">
+                                <!-- Family Member Form Fields -->
+                                <div class="family-member-section">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label>Title</label>
+                                            <select class="form-control title" required>
+                                                <option value="Mr.">Mr.</option>
+                                                <option value="Mrs.">Mrs.</option>
+                                                <option value="Ms.">Ms.</option>
+                                                <option value="Dr.">Dr.</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>First Name</label>
+                                            <input type="text" class="form-control first-name" maxlength="15" placeholder="Enter First Name" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Middle Name</label>
+                                            <input type="text" class="form-control middle-name" maxlength="15" placeholder="Enter Middle Name">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Last Name</label>
+                                            <input type="text" class="form-control last-name"  maxlength="15" placeholder="Enter Last Name" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label>Relation with Head of Family</label>
+                                            <input type="text" class="form-control relation-with-hof" placeholder="Enter Relation with HOF" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Date of Birth</label>
+                                            <input type="date" class="form-control date-of-birth" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Gender</label>
+                                            <select class="form-control gender" required>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Transgender">Transgender</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label>Phone Number</label>
+                                            <input type="text" class="form-control phone-number" maxlength="10" pattern="[0-9]{10}" placeholder="Enter Phone Number" required>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Education Qualification</label>
+                                            <select class="form-control education-qualification" required>
+                                                <option value="School(I-VII)">School (I-VII)</option>
+                                                <option value="School(IX-X)">School (IX-X)</option>
+                                                <option value="School(X-XII)">School (X-XII)</option>
+                                                <option value="Graduate">Graduate</option>
+                                                <option value="Post Graduate">Post Graduate</option>
+                                                <option value="Phd">PhD</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Is Head of Family</label>
+                                            <select class="form-control is-head-of-family" required>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No" selected>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label>Religion</label>
+                                            <select class="form-control religion" required>
+                                                <option value="Hindu">Hindu</option>
+                                                <option value="Muslim">Muslim</option>
+                                                <option value="Christian">Christian</option>
+                                                <option value="Sikh">Sikh</option>
+                                                <option value="Buddhists">Buddhists</option>
+                                                <option value="Jains">Jains</option>
+                                                <option value="Zoroastrianism">Zoroastrianism</option>
+                                                <option value="Others">Others</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Identity Proof</label>
+                                            <select class="form-control identity-proof" required>
+                                                <option value="Aadhar Card">Aadhar Card</option>
+                                                <option value="PAN Card">PAN Card</option>
+                                                <option value="Voter ID">Voter ID</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>ID Number</label>
+                                            <input type="text" class="form-control id-number" maxlength="18" pattern="[A-Za-z0-9]{1,18}" placeholder="Enter ID Number" required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Added Occupation Field -->
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label>Occupation</label>
+                                            <select class="form-control occupation" required>
+                                                <option value="Government service">Government service</option>
+                                                <option value="Private job">Private job</option>
+                                                <option value="Self Employed">Self Employed</option>
+                                                <option value="Self Employed">Unemployed</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-danger remove-family-member">Remove</button>
+                                    <hr>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Ward Number</label>
-                                <input type="number" class="form-control" id="wardNumber" placeholder="Enter Ward Number" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Locality</label>
-                                <input type="text" class="form-control" id="locality" placeholder="Enter Locality" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Sub-Locality</label>
-                                <input type="text" class="form-control" id="subLocality" placeholder="Enter Sub-Locality" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Post Office</label>
-                                <input type="text" class="form-control" id="postOfficeName" placeholder="Enter Post Office" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Police Station</label>
-                                <input type="text" class="form-control" id="policeStation" placeholder="Enter Police Station" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Road Name</label>
-                                <input type="text" class="form-control" id="roadName" placeholder="Enter Road Name" required>
-                            </div>
-                            <div class="form-group">
-                                <label>PIN Code</label>
-                                <input type="text" class="form-control" id="pinCode" placeholder="Enter PIN Code" required>
+
+                            <!-- Add More button -->
+                            <div class="form-group mt-4">
+                                <button type="button" class="btn btn-success" id="addFamilyMember">Add More</button>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Submit Button -->
-                <div class="form-group mt-4">
-                    <button type="submit" class="btn btn-primary">Submit Form</button>
-                </div>
+                    <!-- Address Details Section -->
+                    <div class="card">
+                        <div class="card-header" id="headingAddressDetails">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseAddressDetails" aria-expanded="false" aria-controls="collapseAddressDetails">
+                                    Address Details
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseAddressDetails" class="collapse show" aria-labelledby="headingAddressDetails" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- Address Details Form Fields -->
+                                <div class="form-group">
+                                    <label>GIS Property ID</label>
+                                    <input type="text" class="form-control" id="gisPropertyId" maxlength="12" pattern="[A-Za-z0-9]{1,12}"  placeholder="Enter GIS Property ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ward Number</label>
+                                    <input type="number" class="form-control" id="wardNumber" min="1" max="99" placeholder="Enter Ward Number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Locality</label>
+                                    <input type="text" class="form-control" id="locality" placeholder="Enter Locality" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sub-Locality</label>
+                                    <input type="text" class="form-control" id="subLocality" placeholder="Enter Sub-Locality" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Post Office</label>
+                                    <input type="text" class="form-control" id="postOfficeName" placeholder="Enter Post Office" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Police Station</label>
+                                    <input type="text" class="form-control" id="policeStation" placeholder="Enter Police Station" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Road Name</label>
+                                    <input type="text" class="form-control" id="roadName" placeholder="Enter Road Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>PIN Code</label>
+                                    <input type="text" class="form-control" id="pinCode" maxlength="6" pattern="[0-9]{6}" placeholder="Enter PIN Code" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Submit Button -->
+                    <div class="form-group mt-4">
+                        <center><button type="submit" class="btn"  style="background-color: #40A578; color: white;">Submit Form</button></center>
+                    </div>
+
+                </div>
             </div>
         </div>
     </form>
@@ -269,6 +278,36 @@
         const initialMemberSection = document.querySelector('.family-member-section');
         attachEventListeners(initialMemberSection);
     });
+
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.dropdown-checklist');
+        const input = document.getElementById('constructionType');
+        const dropdownList = document.getElementById('dropdown-list-construction');
+
+
+        // Toggle drop-down list visibility
+        if (dropdown.contains(event.target)) {
+            dropdown.classList.toggle('active');
+        } else {
+            dropdown.classList.remove('active');
+        }
+
+
+        // Update selected options
+        const checkboxes = dropdownList.querySelectorAll('input[type="checkbox"]');
+        let selectedOptions = [];
+
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                selectedOptions = Array.from(checkboxes)
+                    .filter(i => i.checked)
+                    .map(i => i.value);
+
+                input.value = selectedOptions.join(', ');
+            });
+        });
+    });
+
 
     // Function to attach all necessary event listeners to a family member section
     function attachEventListeners(memberSection) {
@@ -297,15 +336,15 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>First Name</label>
-                    <input type="text" class="form-control first-name" placeholder="Enter First Name" required>
+                    <input type="text" class="form-control first-name" maxlength="15" placeholder="Enter First Name" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label>Middle Name</label>
-                    <input type="text" class="form-control middle-name" placeholder="Enter Middle Name">
+                    <input type="text" class="form-control middle-name" maxlength="15"  placeholder="Enter Middle Name">
                 </div>
                 <div class="form-group col-md-3">
                     <label>Last Name</label>
-                    <input type="text" class="form-control last-name" placeholder="Enter Last Name" required>
+                    <input type="text" class="form-control last-name" maxlength="15" placeholder="Enter Last Name" required>
                 </div>
             </div>
 
@@ -331,7 +370,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>Phone Number</label>
-                    <input type="text" class="form-control phone-number" placeholder="Enter Phone Number" required>
+                    <input type="text" class="form-control phone-number" maxlength="10" pattern="[0-9]{10}" placeholder="Enter Phone Number" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Education Qualification</label>
@@ -377,7 +416,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>ID Number</label>
-                    <input type="text" class="form-control id-number" placeholder="Enter ID Number" required>
+                    <input type="text" class="form-control id-number" maxlength="18" pattern="[A-Za-z0-9]{1,18}" placeholder="Enter ID Number" required>
                 </div>
             </div>
 
@@ -389,6 +428,7 @@
                         <option value="Government service">Government service</option>
                         <option value="Private job">Private job</option>
                         <option value="Self Employed">Self Employed</option>
+                        <option value="Self Employed">Unemployed</option>
                     </select>
                 </div>
             </div>
@@ -410,6 +450,119 @@
 
     // Attach the addFamilyMember function to the Add More button
     document.getElementById('addFamilyMember').addEventListener('click', addFamilyMember);
+
+    // Custom Validation Function
+    function validateForm() {
+    const patterns = {
+        oldRorId: /^[A-Za-z0-9]{1,15}$/, // Max 15 alphanumeric
+        rationCardNumber: /^[A-Za-z0-9]{1,16}$/, // Max 16 alphanumeric
+        familyIncome: /^\d{1,10}$/, // Max 10 digits
+        electricityConnection: /^[A-Za-z0-9]{1,16}$/, // Maximum 16 alphanumeric
+        septicTankSewerageConnection: /^[A-Za-z0-9]{0,16}$/, // Optional, max 16 alphanumeric
+        gisPropertyId: /^[A-Za-z0-9]{1,12}$/, // Max 12 alphanumeric
+        wardNumber: /^\d{2}$/, // Exactly 2 digits
+        locality: /^[A-Za-z0-9 ]{1,20}$/, // Max 20 alphanumeric and spaces
+        subLocality: /^[A-Za-z0-9 ]{1,20}$/, // Max 20 alphanumeric and spaces
+        postOfficeName: /^[A-Za-z0-9 ]{1,20}$/, // Max 20 alphanumeric and spaces
+        policeStation: /^[A-Za-z0-9 ]{1,20}$/, // Max 20 alphanumeric and spaces
+        roadName: /^[A-Za-z ]{1,20}$/, // Max 20 alphabetic and spaces
+        pinCode: /^\d{6}$/ // Exactly 6 digits
+    };
+
+    // Validate Old ROR ID
+    const oldRorId = document.getElementById('oldRorId').value;
+    if (!patterns.oldRorId.test(oldRorId)) {
+        alert('Old ROR ID must be up to 15 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Ration Card Number
+    const rationCardNumber = document.getElementById('rationCardNumber').value;
+    if (!patterns.rationCardNumber.test(rationCardNumber)) {
+        alert('Ration Card Number must be exactly 16 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Family Income
+    const familyIncome = document.getElementById('familyIncome').value;
+    if (!patterns.familyIncome.test(familyIncome)) {
+        alert('Family Income must be up to 10 digits.');
+        return false;
+    }
+
+    // Validate Electricity Connection
+    const electricityConnection = document.getElementById('electricityConnection').value;
+    if (!patterns.electricityConnection.test(electricityConnection)) {
+        alert('Electricity Connection must be exactly 16 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Septic Tank/Sewerage Connection (optional)
+    const septicTankSewerageConnection = document.getElementById('septicTankSewerageConnection').value;
+    if (septicTankSewerageConnection && !patterns.septicTankSewerageConnection.test(septicTankSewerageConnection)) {
+        alert('Septic Tank/Sewerage Connection must be up to 16 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate GIS Property ID
+    const gisPropertyId = document.getElementById('gisPropertyId').value;
+    if (!patterns.gisPropertyId.test(gisPropertyId)) {
+        alert('GIS Property ID cannot exceed  12 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Ward Number
+    const wardNumber = document.getElementById('wardNumber').value;
+    if (!patterns.wardNumber.test(wardNumber)) {
+        alert('Ward Number must be 2 digits.');
+        return false;
+    }
+
+    // Validate Locality
+    const locality = document.getElementById('locality').value;
+    if (!patterns.locality.test(locality)) {
+        alert('Locality must be up to 20 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Sub-Locality
+    const subLocality = document.getElementById('subLocality').value;
+    if (!patterns.subLocality.test(subLocality)) {
+        alert('Sub-Locality must be up to 20 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Post Office Name
+    const postOfficeName = document.getElementById('postOfficeName').value;
+    if (!patterns.postOfficeName.test(postOfficeName)) {
+        alert('Post Office Name must be up to 20 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Police Station
+    const policeStation = document.getElementById('policeStation').value;
+    if (!patterns.policeStation.test(policeStation)) {
+        alert('Police Station must be up to 20 alphanumeric characters.');
+        return false;
+    }
+
+    // Validate Road Name
+    const roadName = document.getElementById('roadName').value;
+    if (!patterns.roadName.test(roadName)) {
+        alert('Road Name must be up to 20 alphabetic characters.');
+        return false;
+    }
+
+    // Validate PIN Code
+    const pinCode = document.getElementById('pinCode').value;
+    if (!patterns.pinCode.test(pinCode)) {
+        alert('PIN Code must be exactly 6 digits.');
+        return false;
+    }
+
+    return true; // Return true if all validations pass
+}
+
 
     // Function to get URL parameters
     function getUrlParameters() {
