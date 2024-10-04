@@ -33,7 +33,7 @@ public class AuthController {
             AuthenticationResponse response = authService.login(loginRequest);
             return ResponseEntity.ok(response);
         } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body( e.getMessage());
         } catch (InvalidCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials: " + e.getMessage());
         } catch (UnauthorizedAccessException e) {
