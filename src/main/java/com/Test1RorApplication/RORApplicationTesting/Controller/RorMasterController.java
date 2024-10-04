@@ -40,7 +40,7 @@ public class RorMasterController {
             rorResponseDTO.setRorId(newRorNumber);
             rorResponseDTO.setRorMasterId(rorMasterId.toString());
 
-            return new ResponseEntity<>(rorResponseDTO, HttpStatus.CREATED);
+            return new ResponseEntity<>(rorResponseDTO, HttpStatus.OK);
         } catch (ValidationException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         } catch (DuplicateResourceException e) {
