@@ -4,6 +4,7 @@ import com.Test1RorApplication.RORApplicationTesting.DTO.DEOResponse;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RegisterRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.SearchRequest;
 import com.Test1RorApplication.RORApplicationTesting.DTO.SearchRequestType;
+import com.Test1RorApplication.RORApplicationTesting.Exception.RegistrationException;
 import com.Test1RorApplication.RORApplicationTesting.Service.AdminService;
 import com.Test1RorApplication.RORApplicationTesting.Service.AuthService;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class AdminController {
 
     @PostMapping("/register")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<String> register(@RequestBody RegisterRequest registerRequest) throws RegistrationException {
         authService.signup(registerRequest);
         return new ResponseEntity<>("Registration Successful", HttpStatus.OK);
     }

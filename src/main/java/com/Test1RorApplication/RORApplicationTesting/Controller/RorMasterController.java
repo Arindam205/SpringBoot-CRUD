@@ -2,76 +2,66 @@ package com.Test1RorApplication.RORApplicationTesting.Controller;
 
 import com.Test1RorApplication.RORApplicationTesting.DTO.RorResponseDTO;
 import com.Test1RorApplication.RORApplicationTesting.DTO.SuccessDTO;
-import com.Test1RorApplication.RORApplicationTesting.Model.*;
-import com.Test1RorApplication.RORApplicationTesting.Service.*;
-import com.Test1RorApplication.RORApplicationTesting.Model.RorMaster;
 import com.Test1RorApplication.RORApplicationTesting.DTO.RorMasterDTO;
+import com.Test1RorApplication.RORApplicationTesting.Exception.*;
+import com.Test1RorApplication.RORApplicationTesting.Service.RorMasterService;
+import com.Test1RorApplication.RORApplicationTesting.Service.RorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.*;
+import javax.validation.Valid;
+import javax.validation.ValidationException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/rorMaster")
 public class RorMasterController {
 
     private final RorMasterService rorMasterService;
-    private final CivicDetailsService civicDetailsService;
-    private final AddressService addressService;
-    private final FamilyMembersService familyMembersService;
     private final RorIdService rorIdService;
 
     @Autowired
-    public RorMasterController(RorMasterService rorMasterService, CivicDetailsService civicDetailsService,
-                               AddressService addressService, FamilyMembersService familyMembersService, RorIdService rorIdService) {
+    public RorMasterController(RorMasterService rorMasterService, RorIdService rorIdService) {
         this.rorMasterService = rorMasterService;
-        this.civicDetailsService = civicDetailsService;
-        this.addressService = addressService;
-        this.familyMembersService = familyMembersService;
         this.rorIdService = rorIdService;
     }
 
     @PostMapping("/create")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true", allowedHeaders = "*")
-    public ResponseEntity<RorResponseDTO> createRorMasterRecord(@RequestBody RorMasterDTO rorMasterDTO) {
+    public ResponseEntity<RorResponseDTO> createRorMasterRecord(@Valid @RequestBody RorMasterDTO rorMasterDTO) {
+        try {
+            UUID rorMasterId = rorMasterService.createFullRorMasterRecord(rorMasterDTO);
+            String newRorNumber = rorIdService.generateAndSaveRorId(rorMasterId);
 
-        // Step 1: Create the RorMaster entry and get the generated UUID
-        RorMaster savedRorMaster = rorMasterService.saveRorMaster(rorMasterDTO.getRorMasterCoreDTO());
-        UUID rorMasterId = savedRorMaster.getRorMasterId();
+            RorResponseDTO rorResponseDTO = new RorResponseDTO();
+            rorResponseDTO.setRorId(newRorNumber);
+            rorResponseDTO.setRorMasterId(rorMasterId.toString());
 
-        // Step 2: Save CivicDetails using the rorMasterId
-        rorMasterService.saveCivilDetails(rorMasterDTO.getCivicDetailsDTO(), rorMasterId);
-
-        // Step 3: Save Address using the rorMasterId
-        rorMasterService.saveAddresses(rorMasterDTO.getAddressDTO(), rorMasterId);
-
-        // Step 4: Save all FamilyMembers
-        rorMasterService.saveAllFamilyMembers(rorMasterDTO, rorMasterId);
-
-        // Generate the unique ROR number based on the saved data
-        String newRorNumber = rorIdService.generateRorId();
-
-        // Step 5: Save generated e-rorId using the rorMasterId
-        RorId rorId = RorId.builder()
-                .rorMasterId(rorMasterId)
-                .rorId(newRorNumber).build();
-        RorId id = rorIdService.saveRorId(rorId, rorMasterId);
-        RorResponseDTO rorResponseDTO = new RorResponseDTO();
-        rorResponseDTO.setRorId(id.getRorId());
-        rorResponseDTO.setRorMasterId(id.getRorMasterId().toString());
-
-
-        // Return the response map as JSON
-        return new ResponseEntity<>(rorResponseDTO, HttpStatus.OK);
+            return new ResponseEntity<>(rorResponseDTO, HttpStatus.CREATED);
+        } catch (ValidationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        } catch (DuplicateResourceException e) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, e.getMessage(), e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while processing your request", e);
+        }
     }
 
-    // GET endpoint to fetch ROR and family members
     @GetMapping("/success/{rorMasterId}")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true", allowedHeaders = "*")
     public ResponseEntity<SuccessDTO> getRorSuccessPage(@PathVariable UUID rorMasterId) {
-        SuccessDTO successDTO = rorMasterService.getSuccessDTO(rorMasterId);
-        return ResponseEntity.ok(successDTO);
+        try {
+            SuccessDTO successDTO = rorMasterService.getSuccessDTO(rorMasterId);
+            return ResponseEntity.ok(successDTO);
+        }catch(IllegalArgumentException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ROR Master ID format", e);
+        } catch (ResourceNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occurred while fetching the data", e);
+        }
     }
 }
