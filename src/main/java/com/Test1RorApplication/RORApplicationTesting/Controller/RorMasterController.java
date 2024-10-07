@@ -6,9 +6,15 @@ import com.Test1RorApplication.RORApplicationTesting.DTO.RorMasterDTO;
 import com.Test1RorApplication.RORApplicationTesting.Exception.*;
 import com.Test1RorApplication.RORApplicationTesting.Service.RorMasterService;
 import com.Test1RorApplication.RORApplicationTesting.Service.RorIdService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -16,6 +22,7 @@ import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/rorMaster")
 public class RorMasterController {
@@ -30,10 +37,11 @@ public class RorMasterController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("isAuthenticated()")
     @CrossOrigin(origins = "http://localhost:63342", allowCredentials = "true", allowedHeaders = "*")
-    public ResponseEntity<RorResponseDTO> createRorMasterRecord(@Valid @RequestBody RorMasterDTO rorMasterDTO) {
+    public ResponseEntity<RorResponseDTO> createRorMasterRecord(@Valid @RequestBody RorMasterDTO rorMasterDTO, @AuthenticationPrincipal UserDetails userDetails) {
         try {
-            UUID rorMasterId = rorMasterService.createFullRorMasterRecord(rorMasterDTO);
+            UUID rorMasterId = rorMasterService.createFullRorMasterRecord(rorMasterDTO, userDetails);
             String newRorNumber = rorIdService.generateAndSaveRorId(rorMasterId);
 
             RorResponseDTO rorResponseDTO = new RorResponseDTO();

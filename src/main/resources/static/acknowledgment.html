@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMC e-ROR Acknowledgment</title>
 
+    <script>
+        // Check if token is present in localStorage
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            // Redirect to the sign-in page
+            window.location.href = 'registration_password_checker.html';
+        }
+    </script>
     <!-- Minimal and sleek styles for an official document look -->
     <style>
         body {
@@ -234,7 +242,7 @@
 </div>
 
 <div class="container no-print" style="text-align: center;">
-    <a class="button-4" role="button" href="registration_password_checker.html">Logout</a>
+    <a class="button-4" role="button" href="#" onclick="logout()">Logout</a>
     <a class="button-4" role="button" href="DataEntryForm.html">New Entry</a>
 </div>
 
@@ -243,122 +251,132 @@
 
 <!-- JavaScript to Populate the Acknowledgment Page -->
 <script>
-    // Function to get URL parameters
-    function getUrlParameters() {
-        const params = {};
-        const queryString = window.location.search.substring(1);
-        const regex = /([^&=]+)=([^&]*)/g;
-        let match;
-        while (match = regex.exec(queryString)) {
-            params[decodeURIComponent(match[1])] = decodeURIComponent(match[2].replace(/\+/g, ' '));
+    function logout() {
+       // Clear the jwtToken from localStorage
+       localStorage.removeItem('jwtToken'); // Or use localStorage.clear(); to clear all keys
+       // Redirect to the sign-in page
+       window.location.href = 'registration_password_checker.html';
+   }
+   // Function to get URL parameters
+   function getUrlParameters() {
+       const params = {};
+       const queryString = window.location.search.substring(1);
+       const regex = /([^&=]+)=([^&]*)/g;
+       let match;
+       while (match = regex.exec(queryString)) {
+           params[decodeURIComponent(match[1])] = decodeURIComponent(match[2].replace(/\+/g, ' '));
+       }
+       return params;
+   }
+
+   // Function to format date as DD-MM-YYYY
+   function formatDate(dateString) {
+       const date = new Date(dateString);
+       const day = String(date.getDate()).padStart(2, '0');
+       const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+       const year = date.getFullYear();
+       return `${day}-${month}-${year}`;
+   }
+
+   document.addEventListener('DOMContentLoaded', function() {
+        if (!token) {
+            // Redirect to the sign-in page
+            window.location.href = 'registration_password_checker.html';
         }
-        return params;
-    }
+       const params = getUrlParameters();
+       const rorMasterId = params.rorMasterId;
 
-    // Function to format date as DD-MM-YYYY
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
-    }
+       if (!rorMasterId) {
+           alert('ROR Master ID is missing in the URL parameters.');
+           return;
+       }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const params = getUrlParameters();
-        const rorMasterId = params.rorMasterId;
+       // Fetch data from the backend API
+       fetch(`http://localhost:8080/api/v1/rorMaster/success/${rorMasterId}`)
+           .then(response => {
+               if (response.ok) {
+                   return response.json();
+               } else {
+                   throw new Error('Failed to fetch acknowledgment data.');
+               }
+           })
+           .then(data => {
+               // Remove loading spinners
+               removeSpinners(['rorIdSpinner', 'fullNameHofSpinner', 'wardNumberSpinner', 'rationCardNumberSpinner', 'mobileNumberSpinner', 'generatedDateSpinner']);
 
-        if (!rorMasterId) {
-            alert('ROR Master ID is missing in the URL parameters.');
-            return;
-        }
+               // Populate e-ROR Details
+               document.getElementById('rorId').textContent = data.rorId || 'N/A';
+               document.getElementById('wardNumber').textContent = data.wardNumber !== undefined ? data.wardNumber : 'N/A';
+               document.getElementById('rationCardNumber').textContent = data.rationCardNumber || 'N/A';
 
-        // Fetch data from the backend API
-        fetch(`http://localhost:8080/api/v1/rorMaster/success/${rorMasterId}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Failed to fetch acknowledgment data.');
-                }
-            })
-            .then(data => {
-                // Remove loading spinners
-                removeSpinners(['rorIdSpinner', 'fullNameHofSpinner', 'wardNumberSpinner', 'rationCardNumberSpinner', 'mobileNumberSpinner', 'generatedDateSpinner']);
+               // Set Generated on Date to current date
+               const today = new Date();
+               const formattedDate = formatDate(today.toISOString());
+               document.getElementById('generatedDate').textContent = formattedDate;
 
-                // Populate e-ROR Details
-                document.getElementById('rorId').textContent = data.rorId || 'N/A';
-                document.getElementById('wardNumber').textContent = data.wardNumber !== undefined ? data.wardNumber : 'N/A';
-                document.getElementById('rationCardNumber').textContent = data.rationCardNumber || 'N/A';
+               // Identify Head of Family
+               let headOfFamily = null;
+               if (Array.isArray(data.familyMembers)) {
+                   headOfFamily = data.familyMembers.find(member => member.relationWithHOF.toLowerCase() === 'self');
+               }
 
-                // Set Generated on Date to current date
-                const today = new Date();
-                const formattedDate = formatDate(today.toISOString());
-                document.getElementById('generatedDate').textContent = formattedDate;
+               if (headOfFamily) {
+                   document.getElementById('fullNameHof').textContent = headOfFamily.fullName || 'N/A';
+                   document.getElementById('mobileNumber').textContent = headOfFamily.phoneNumber || 'N/A';
+               } else {
+                   document.getElementById('fullNameHof').textContent = 'N/A';
+                   document.getElementById('mobileNumber').textContent = 'N/A';
+               }
 
-                // Identify Head of Family
-                let headOfFamily = null;
-                if (Array.isArray(data.familyMembers)) {
-                    headOfFamily = data.familyMembers.find(member => member.relationWithHOF.toLowerCase() === 'self');
-                }
+               // Populate Family Members Table
+               const familyMembers = data.familyMembers || [];
+               const tableBody = document.querySelector('#familyMembersTable tbody');
 
-                if (headOfFamily) {
-                    document.getElementById('fullNameHof').textContent = headOfFamily.fullName || 'N/A';
-                    document.getElementById('mobileNumber').textContent = headOfFamily.phoneNumber || 'N/A';
-                } else {
-                    document.getElementById('fullNameHof').textContent = 'N/A';
-                    document.getElementById('mobileNumber').textContent = 'N/A';
-                }
+               // Clear existing rows if any
+               tableBody.innerHTML = '';
 
-                // Populate Family Members Table
-                const familyMembers = data.familyMembers || [];
-                const tableBody = document.querySelector('#familyMembersTable tbody');
+               familyMembers.forEach(member => {
+                   const row = document.createElement('tr');
 
-                // Clear existing rows if any
-                tableBody.innerHTML = '';
+                   // Create Name Cell
+                   const nameCell = document.createElement('td');
+                   nameCell.textContent = member.fullName || 'N/A';
+                   row.appendChild(nameCell);
 
-                familyMembers.forEach(member => {
-                    const row = document.createElement('tr');
+                   // Create Relation Cell
+                   const relationCell = document.createElement('td');
+                   relationCell.textContent = member.relationWithHOF || 'N/A';
+                   row.appendChild(relationCell);
 
-                    // Create Name Cell
-                    const nameCell = document.createElement('td');
-                    nameCell.textContent = member.fullName || 'N/A';
-                    row.appendChild(nameCell);
+                   tableBody.appendChild(row);
+               });
 
-                    // Create Relation Cell
-                    const relationCell = document.createElement('td');
-                    relationCell.textContent = member.relationWithHOF || 'N/A';
-                    row.appendChild(relationCell);
+               // Handle case when there are no family members
+               if (familyMembers.length === 0) {
+                   const row = document.createElement('tr');
+                   const noDataCell = document.createElement('td');
+                   noDataCell.colSpan = 2;
+                   noDataCell.textContent = 'No family members found.';
+                   noDataCell.style.textAlign = 'center';
+                   row.appendChild(noDataCell);
+                   tableBody.appendChild(row);
+               }
+           })
+           .catch(error => {
+               console.error('Error:', error);
+               alert('An error occurred while fetching acknowledgment data. Please try again later.');
+           });
+   });
 
-                    tableBody.appendChild(row);
-                });
-
-                // Handle case when there are no family members
-                if (familyMembers.length === 0) {
-                    const row = document.createElement('tr');
-                    const noDataCell = document.createElement('td');
-                    noDataCell.colSpan = 2;
-                    noDataCell.textContent = 'No family members found.';
-                    noDataCell.style.textAlign = 'center';
-                    row.appendChild(noDataCell);
-                    tableBody.appendChild(row);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred while fetching acknowledgment data. Please try again later.');
-            });
-    });
-
-    // Function to remove loading spinners after data is loaded
-    function removeSpinners(spinnerIds) {
-        spinnerIds.forEach(id => {
-            const spinner = document.getElementById(id);
-            if (spinner) {
-                spinner.remove();
-            }
-        });
-    }
+   // Function to remove loading spinners after data is loaded
+   function removeSpinners(spinnerIds) {
+       spinnerIds.forEach(id => {
+           const spinner = document.getElementById(id);
+           if (spinner) {
+               spinner.remove();
+           }
+       });
+   }
 </script>
 
 </body>

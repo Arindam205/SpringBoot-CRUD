@@ -5,6 +5,7 @@ import com.Test1RorApplication.RORApplicationTesting.Exception.*;
 import com.Test1RorApplication.RORApplicationTesting.Model.*;
 import com.Test1RorApplication.RORApplicationTesting.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,10 +29,13 @@ public class RorMasterService {
     private CivicDetailsRepository civicDetailsRepository;
 
     @Transactional
-    public UUID createFullRorMasterRecord(RorMasterDTO rorMasterDTO) throws ValidationException, DuplicateResourceException {
+    public UUID createFullRorMasterRecord(RorMasterDTO rorMasterDTO, UserDetails userDetails) throws ValidationException, DuplicateResourceException {
+        if (userDetails == null || userDetails.getUsername() == null || userDetails.getUsername().isEmpty()) {
+            throw new ValidationException("User details are missing or invalid.");
+        }
         validateRorMasterDTO(rorMasterDTO);
 
-        RorMaster rorMaster = saveRorMaster(rorMasterDTO.getRorMasterCoreDTO());
+        RorMaster rorMaster = saveRorMaster(rorMasterDTO.getRorMasterCoreDTO(), userDetails);
         UUID rorMasterId = rorMaster.getRorMasterId();
 
         saveCivicDetails(rorMasterDTO.getCivicDetailsDTO(), rorMasterId);
@@ -60,11 +64,12 @@ public class RorMasterService {
         // Add more specific validations as needed
     }
 
-    private RorMaster saveRorMaster(RORMasterCoreDTO rorMasterCoreDTO) throws DuplicateResourceException {
+    private RorMaster saveRorMaster(RORMasterCoreDTO rorMasterCoreDTO, UserDetails userDetails) throws DuplicateResourceException {
         RorMaster rorMaster = RorMaster.builder()
                 .oldRorId(rorMasterCoreDTO.getOldRorId())
                 .rationCardNumber(rorMasterCoreDTO.getRationCardNumber())
                 .familyIncome(rorMasterCoreDTO.getFamilyIncome())
+                .createdByUser(userDetails.getUsername())
                 .build();
         try {
             return rorMasterRepository.save(rorMaster);

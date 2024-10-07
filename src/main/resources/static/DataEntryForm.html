@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>ROR Form</title>
+    <script>
+        // Check if token is present in localStorage
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            // Redirect to the sign-in page
+            window.location.href = 'registration_password_checker.html';
+        }
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -653,7 +661,8 @@
         fetch('http://localhost:8080/api/v1/rorMaster/create', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(requestBody),
         })
