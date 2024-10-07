@@ -2,6 +2,7 @@ package com.Test1RorApplication.RORApplicationTesting.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
@@ -22,7 +23,6 @@ public class RorMaster {
     @Column(nullable = false)
     private String oldRorId;
 
-
     private String ERorId;
 
     @Column(nullable = false, unique = true)
@@ -31,8 +31,8 @@ public class RorMaster {
     @Column(nullable = true)
     private int familyIncome;
 
-    @Builder.Default()
-    private String createdByUser="System";
+    @CreatedBy
+    private String createdByUser;
 
     @org.springframework.data.annotation.CreatedDate
     @Column(updatable = false)
@@ -42,6 +42,4 @@ public class RorMaster {
 
     @org.springframework.data.annotation.LastModifiedDate
     private LocalDateTime lastModifiedDate;
-
-
 }
