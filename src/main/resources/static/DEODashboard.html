@@ -256,6 +256,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end rounded">
                             <!-- Add dropdown items here if needed -->
+                            <span id="user-name" class="dropdown-item">Loading...</span>
                         </div>
                     </li>
                 </ul>
@@ -267,22 +268,6 @@
             <div class="container">
                 <div class="row">
                     <!-- ............................First Card..........................................  -->
-<!--                    <div class="col-md-6 col-xl-6 custom-card-width">-->
-<!--                        <div class="card bg-c-blue Entry-card">-->
-<!--                            <div class="card-block d-flex justify-content-between align-items-center">-->
-<!--                                <div class="left-content">-->
-<!--                                    <h6 class="m-b-20">Total Ror Entry</h6>-->
-<!--                                    <h2 class="text-right">-->
-<!--                                        <span>486</span>-->
-<!--                                    </h2>-->
-<!--                                    <p class="m-b-0">Completed</p>-->
-<!--                                </div>-->
-<!--                                <div class="right-content">-->
-<!--                                    <img src="document.png" alt="Menu Icon" style="width: 100px; height: 100px;"/> &lt;!&ndash; Adjust size as needed &ndash;&gt;-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
 
                     <div class="col-md-6 col-xl-6 custom-card-width">
                         <div class="card bg-c-blue Entry-card">
@@ -292,7 +277,7 @@
                                     <h2 class="text-right">
                                         <span id="entry-count">486</span>
                                     </h2>
-                                    <p class="m-b-0">Completed by <span id="user-name">Loading...</span></p>
+                                    <p class="m-b-0">Completed</p>
                                 </div>
                                 <div class="right-content">
                                     <img src="document.png" alt="Menu Icon" style="width: 100px; height: 100px;"/>
@@ -308,7 +293,7 @@
                                 <div class="left-content">
                                     <h6 class="m-b-20">User Details</h6>
                                     <h2 class="text-right">
-                                        <span id="Logged-user">Not Logged In</span>
+                                        <span id="user-name">Not Logged In</span>
                                     </h2>
                                     <p class="m-b-0">Data Entry Operator
                                         <span class="float-right"></span>
@@ -340,9 +325,9 @@
                                     <thead class="thead-light">
                                     <tr>
                                         <th scope="col">Sl No.</th>
-                                        <th scope="col">User Name</th>
-                                        <th scope="col">Ward Number</th>
-                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">e-ROR Number</th>
+                                        <th scope="col">Ration Card Number</th>
+                                        <th scope="col">Head of Family</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                     </thead>
@@ -434,14 +419,21 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 <script>
+    const hamBurger = document.querySelector(".toggle-btn");
+
+    hamBurger.addEventListener("click", function () {
+    document.querySelector("#sidebar").classList.toggle("expand");
+});
+
+
     // First, let's define the JWT functions inline to ensure they're available
-function getJwtToken() {
+    function getJwtToken() {
     const token = localStorage.getItem('jwtToken');
     console.log("Retrieved token:", token ? "Token exists" : "No token found");
     return token;
 }
 
-function parseJwt(token) {
+    function parseJwt(token) {
     try {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -456,7 +448,7 @@ function parseJwt(token) {
     }
 }
 
-function updateUserName() {
+    function updateUserName() {
     const userNameElement = document.getElementById('user-name');
     const token = getJwtToken();
 
@@ -482,15 +474,15 @@ function updateUserName() {
     }
 }
 
-// Call the function when the page loads
-document.addEventListener('DOMContentLoaded', function() {
+     // Call the function when the page loads
+     document.addEventListener('DOMContentLoaded', function() {
     console.log("Page loaded, updating username...");
     updateUserName();
 });
 
-// Also update when localStorage changes
-window.addEventListener('storage', function(e) {
-    if (e.key === 'jwtToken') {
+     // Also update when localStorage changes
+     window.addEventListener('storage', function(e) {
+     if (e.key === 'jwtToken') {
         console.log("JWT token changed, updating username...");
         updateUserName();
     }
