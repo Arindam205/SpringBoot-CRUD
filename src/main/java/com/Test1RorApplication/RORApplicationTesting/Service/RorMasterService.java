@@ -4,7 +4,11 @@ import com.Test1RorApplication.RORApplicationTesting.DTO.*;
 import com.Test1RorApplication.RORApplicationTesting.Exception.*;
 import com.Test1RorApplication.RORApplicationTesting.Model.*;
 import com.Test1RorApplication.RORApplicationTesting.Repository.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +19,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class RorMasterService {
 
     @Autowired
@@ -166,5 +172,22 @@ public class RorMasterService {
                 .phoneNumber(member.getPhoneNumber())
                 .relationWithHOF(member.getRelationWithHOF())
                 .build();
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<RorDetailsDTO> getRorDetailsByCreatedUser(String createdByUser, int skip, int limit) {
+        log.info("Fetching ROR details for user: {}", createdByUser);
+
+        Pageable pageable = PageRequest.of(skip / 10, Math.min(limit, 50));
+        List<RorDetailsDTO> rorDetails = rorMasterRepository.findRorDetailsByCreatedUser(createdByUser, pageable);
+
+        if (rorDetails.isEmpty()) {
+            log.warn("No ROR details found for user: {}", createdByUser);
+            throw new RorNotFoundException("No ROR records found for the specified user");
+        }
+
+        log.debug("Found {} ROR records for user: {}", rorDetails.size(), createdByUser);
+        return rorDetails;
     }
 }
