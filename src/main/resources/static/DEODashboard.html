@@ -52,7 +52,7 @@
         }
 
         .btn-outline-primary:hover {
-          background-color: #007bff;
+          background-color: #a1ebbd;
           color: white;
         }
 
@@ -77,6 +77,74 @@
         .table-hover tbody tr {
           transition: background-color 0.2s ease;
         }
+
+        /*  new style for dashboard cards */
+        body{
+        margin-top:20px;
+        background:#FAFAFA;
+        }
+        .Entry-card {
+        color: #fff;
+        }
+
+        .User-card {
+        color: #fff;
+        }
+
+
+        .bg-c-blue {
+        background: #6A9C89;
+        }
+
+        .bg-c-green {
+        background: #6A9C89
+        }
+
+        .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+        }
+
+        .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+        }
+
+
+        .card {
+        border-radius: 8px;
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(80, 154, 252, 0.16);
+        border: none;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        }
+
+        .card .card-block {
+        padding: 30px;
+        }
+
+        .Entry-card i {
+        font-size: 26px;
+        }
+
+        .User-card i {
+        font-size: 26px;
+        }
+
+
+        .f-left {
+        float: left;
+        }
+
+        .f-right {
+        float: right;
+        }
+
+        .custom-card-width {
+        width: 500px; /* Set your desired width */
+        margin: auto ; /* Center the card */
+}
+
     </style>
 
 
@@ -165,23 +233,7 @@
         </div>
     </aside>
     <div class="main">
-<!--        <nav class="navbar navbar-expand px-4 py-3">-->
-<!--            <form action="#" class="d-none d-sm-inline-block">-->
 
-<!--            </form>-->
-<!--            <div class="navbar-collapse collapse">-->
-<!--                <ul class="navbar-nav ms-auto">-->
-<!--                    <li class="nav-item dropdown">-->
-<!--                        <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">-->
-<!--                            <img src="/account.png" class="avatar img-fluid" alt="">-->
-<!--                        </a>-->
-<!--                        <div class="dropdown-menu dropdown-menu-end rounded">-->
-
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </nav>-->
         <nav class="navbar navbar-expand-lg px-4 py-3">
             <!-- Logo and Text Section -->
             <div class="d-flex align-items-center">
@@ -200,7 +252,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
                         <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                            <img src="/account.png" class="avatar img-fluid" alt="">
+                            <img src="sideProfile.png" class="avatar img-fluid" alt="">
                         </a>
                         <div class="dropdown-menu dropdown-menu-end rounded">
                             <!-- Add dropdown items here if needed -->
@@ -212,92 +264,74 @@
 
         <!-- ..................................................Body ...................................................................... -->
         <main class="content px-3 py-4">
+            <div class="container">
+                <div class="row">
+                    <!-- ............................First Card..........................................  -->
+<!--                    <div class="col-md-6 col-xl-6 custom-card-width">-->
+<!--                        <div class="card bg-c-blue Entry-card">-->
+<!--                            <div class="card-block d-flex justify-content-between align-items-center">-->
+<!--                                <div class="left-content">-->
+<!--                                    <h6 class="m-b-20">Total Ror Entry</h6>-->
+<!--                                    <h2 class="text-right">-->
+<!--                                        <span>486</span>-->
+<!--                                    </h2>-->
+<!--                                    <p class="m-b-0">Completed</p>-->
+<!--                                </div>-->
+<!--                                <div class="right-content">-->
+<!--                                    <img src="document.png" alt="Menu Icon" style="width: 100px; height: 100px;"/> &lt;!&ndash; Adjust size as needed &ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="col-md-6 col-xl-6 custom-card-width">
+                        <div class="card bg-c-blue Entry-card">
+                            <div class="card-block d-flex justify-content-between align-items-center">
+                                <div class="left-content">
+                                    <h6 class="m-b-20">Total Ror Entry</h6>
+                                    <h2 class="text-right">
+                                        <span id="entry-count">486</span>
+                                    </h2>
+                                    <p class="m-b-0">Completed by <span id="user-name">Loading...</span></p>
+                                </div>
+                                <div class="right-content">
+                                    <img src="document.png" alt="Menu Icon" style="width: 100px; height: 100px;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ............................Second Card..........................................  -->
+                    <div class="col-md-6 col-xl-6 custom-card-width">
+                        <div class="card bg-c-green User-card">
+                            <div class="card-block d-flex justify-content-between align-items-center">
+                                <div class="left-content">
+                                    <h6 class="m-b-20">User Details</h6>
+                                    <h2 class="text-right">
+                                        <span id="Logged-user">Not Logged In</span>
+                                    </h2>
+                                    <p class="m-b-0">Data Entry Operator
+                                        <span class="float-right"></span>
+                                    </p>
+                                </div>
+                                <div class="right-content">
+                                    <img src="green-icon.png" alt="Rocket Icon" style="width: 100px; height: 100px;"/> <!-- Adjust size as needed -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  ....................................Button............................................ -->
+                    <div class="container" style="text-align: center;">
+                        <a class="button-4" role="button" href="DataEntryForm.html">NEW ROR ENTRY</a>
+                        <!-- <a class="button-4" role="button" href="ManageDEOs.html">MANAGE DATA ENTRY OPERATOR</a> -->
+                    </div>
+                </div>
+            </div>
+
             <div class="container-fluid">
                 <div class="mb-3">
-                    <h3 class="fw-bold fs-4 mb-3 text-center" >Admin Dashboard</h3>
-                    <!-- <div class="row">
-                        <div class="col-12">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr class="highlight">
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-12">
-                          <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th scope="col">Day</th>
-                                <th scope="col">Article Name</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Shares</th>
-                                <th scope="col">Actions</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Bootstrap 4 CDN and Starter Template</td>
-                                <td>Cristina</td>
-                                <td>2.846</td>
-                                <td>
-                                  <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                  <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2</th>
-                                <td>Bootstrap Grid 4 Tutorial and Examples</td>
-                                <td>Cristina</td>
-                                <td>3.417</td>
-                                <td>
-                                  <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                  <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">3</th>
-                                <td>Bootstrap Flexbox Tutorial and Examples</td>
-                                <td>Cristina</td>
-                                <td>1.234</td>
-                                <td>
-                                  <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                  <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                    </div> -->
+                    <!-- <h3 class="fw-bold fs-4 mb-3 text-center" >Admin Dashboard</h3> -->
+
                     <div class="row">
                         <div class="col-12">
                             <!-- Add a wrapper for sleek scrolling and shadow -->
@@ -309,7 +343,7 @@
                                         <th scope="col">User Name</th>
                                         <th scope="col">Ward Number</th>
                                         <th scope="col">Phone Number</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -319,9 +353,12 @@
                                         <td>Cristina</td>
                                         <td>2.846</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm"><i class="far fa-eye"></i></button>
-                                            <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            <button type="button" class="button-Action">
+                                                View
+                                            </button>
+                                            <!-- <button type="button" class="btn btn-outline-primary btn-lg"><i class="far fa-eye"></i></button> -->
+                                            <!-- <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button> -->
+                                            <!-- <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button> -->
                                         </td>
                                     </tr>
                                     <tr>
@@ -330,9 +367,12 @@
                                         <td>Cristina</td>
                                         <td>3.417</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm"><i class="far fa-eye"></i></button>
-                                            <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            <button type="button" class="button-Action">
+                                                View
+                                            </button>
+                                            <!-- <button type="button" class="btn btn-outline-primary btn-lg"><i class="far fa-eye"></i></button> -->
+                                            <!-- <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button> -->
+                                            <!-- <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button> -->
                                         </td>
                                     </tr>
                                     <tr>
@@ -341,9 +381,12 @@
                                         <td>Cristina</td>
                                         <td>1.234</td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-primary btn-sm"><i class="far fa-eye"></i></button>
-                                            <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button>
-                                            <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                            <button type="button" class="button-Action">
+                                                View
+                                            </button>
+                                            <!-- <button type="button" class="btn btn-outline-primary btn-sm"><i class="far fa-eye"></i></button> -->
+                                            <!-- <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button> -->
+                                            <!-- <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button> -->
                                         </td>
                                     </tr>
                                     </tbody>
@@ -391,11 +434,68 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 <script>
-    const hamBurger = document.querySelector(".toggle-btn");
+    // First, let's define the JWT functions inline to ensure they're available
+function getJwtToken() {
+    const token = localStorage.getItem('jwtToken');
+    console.log("Retrieved token:", token ? "Token exists" : "No token found");
+    return token;
+}
 
-hamBurger.addEventListener("click", function () {
- document.querySelector("#sidebar").classList.toggle("expand");
+function parseJwt(token) {
+    try {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        console.log("Decoded payload:", JSON.parse(jsonPayload));
+        return JSON.parse(jsonPayload);
+    } catch (error) {
+        console.error("Error parsing JWT:", error);
+        return null;
+    }
+}
+
+function updateUserName() {
+    const userNameElement = document.getElementById('user-name');
+    const token = getJwtToken();
+
+    if (!token) {
+        console.log("No token found in localStorage");
+        userNameElement.textContent = "Not Logged In";
+        return;
+    }
+
+    try {
+        const decoded = parseJwt(token);
+        if (decoded) {
+            // Check multiple possible username fields
+            const username = decoded.sub || decoded.username || decoded.email || decoded.preferred_username;
+            console.log("Username found:", username);
+            userNameElement.textContent = username || "Not Logged In";
+        } else {
+            userNameElement.textContent = "Not Logged In";
+        }
+    } catch (error) {
+        console.error("Error updating username:", error);
+        userNameElement.textContent = "Not Logged In";
+    }
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Page loaded, updating username...");
+    updateUserName();
 });
+
+// Also update when localStorage changes
+window.addEventListener('storage', function(e) {
+    if (e.key === 'jwtToken') {
+        console.log("JWT token changed, updating username...");
+        updateUserName();
+    }
+});
+
 </script>
 </body>
 
