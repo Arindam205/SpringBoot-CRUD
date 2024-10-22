@@ -256,7 +256,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end rounded">
                             <!-- Add dropdown items here if needed -->
-                            <span id="user-name" class="dropdown-item">Loading...</span>
+                            <span class="user-name dropdown-item">Loading...</span>
                         </div>
                     </li>
                 </ul>
@@ -293,7 +293,7 @@
                                 <div class="left-content">
                                     <h6 class="m-b-20">User Details</h6>
                                     <h2 class="text-right">
-                                        <span id="user-name">Not Logged In</span>
+                                        <span class="user-name">Loading...</span>
                                     </h2>
                                     <p class="m-b-0">Data Entry Operator
                                         <span class="float-right"></span>
@@ -385,30 +385,30 @@
 
 
         <!--         ....................................................................... Footer      .......................-->
-<!--        <footer class="footer">-->
-<!--            <div class="container-fluid">-->
-<!--                <div class="row text-body-secondary">-->
-<!--                    <div class="col-6 text-start ">-->
-<!--                        <a class="text-body-secondary" href="#">-->
-<!--                            <strong>CodzSwod</strong>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="col-6 text-end text-body-secondary d-none d-md-block">-->
-<!--                        <ul class="list-inline mb-0">-->
-<!--                            <li class="list-inline-item">-->
-<!--                                <a class="text-body-secondary" href="#">Contact</a>-->
-<!--                            </li>-->
-<!--                            <li class="list-inline-item">-->
-<!--                                <a class="text-body-secondary" href="#">About Us</a>-->
-<!--                            </li>-->
-<!--                            <li class="list-inline-item">-->
-<!--                                <a class="text-body-secondary" href="#">Terms & Conditions</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </footer>-->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row text-body-secondary">
+                    <div class="col-6 text-start ">
+                        <a class="text-body-secondary" href="#">
+                            <strong>CodzSwod</strong>
+                        </a>
+                    </div>
+                    <div class="col-6 text-end text-body-secondary d-none d-md-block">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item">
+                                <a class="text-body-secondary" href="#">Contact</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-body-secondary" href="#">About Us</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="text-body-secondary" href="#">Terms & Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -426,67 +426,60 @@
 });
 
 
-    // First, let's define the JWT functions inline to ensure they're available
-    function getJwtToken() {
-    const token = localStorage.getItem('jwtToken');
-    console.log("Retrieved token:", token ? "Token exists" : "No token found");
-    return token;
+    // Function to fetch JWT token from localStorage or sessionStorage
+function getJwtToken() {
+    return localStorage.getItem('jwtToken'); // Modify this if you store the token in sessionStorage or cookies
 }
 
-    function parseJwt(token) {
-    try {
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-        console.log("Decoded payload:", JSON.parse(jsonPayload));
-        return JSON.parse(jsonPayload);
-    } catch (error) {
-        console.error("Error parsing JWT:", error);
-        return null;
-    }
+// Function to decode a Base64-encoded string (this decodes the JWT payload)
+function base64DecodeUnicode(str) {
+    return decodeURIComponent(atob(str).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 }
 
-    function updateUserName() {
-    const userNameElement = document.getElementById('user-name');
-    const token = getJwtToken();
+// Function to decode JWT and extract the payload
+function parseJwt(token) {
+    const base64Url = token.split('.')[1]; // Extract the payload part of the JWT
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(base64DecodeUnicode(base64)); // Decode and parse the payload
+}
 
-    if (!token) {
-        console.log("No token found in localStorage");
-        userNameElement.textContent = "Not Logged In";
+// Function to extract username from JWT and display it in all elements with class 'user-name'
+function showUserName() {
+    const jwtToken = getJwtToken(); // Get the JWT token from localStorage
+    const userNameElements = document.querySelectorAll('.user-name'); // Select all elements with the class 'user-name'
+
+    if (!jwtToken || jwtToken === '') {  // Handle cases where token is null or an empty string
+        userNameElements.forEach(element => {
+            element.textContent = "Not Logged In";
+        });
         return;
     }
 
     try {
-        const decoded = parseJwt(token);
-        if (decoded) {
-            // Check multiple possible username fields
-            const username = decoded.sub || decoded.username || decoded.email || decoded.preferred_username;
-            console.log("Username found:", username);
-            userNameElement.textContent = username || "Not Logged In";
+        const decodedJwt = parseJwt(jwtToken); // Try decoding the JWT
+        const userName = decodedJwt.sub; // Extract the username from 'sub'
+
+        if (userName) {
+            userNameElements.forEach(element => {
+                element.textContent = userName;  // Update all elements with the username
+            });
         } else {
-            userNameElement.textContent = "Not Logged In";
+            userNameElements.forEach(element => {
+                element.textContent = "Not Logged In";  // Fallback if username isn't found
+            });
         }
     } catch (error) {
-        console.error("Error updating username:", error);
-        userNameElement.textContent = "Not Logged In";
+        console.error("Error decoding JWT:", error);
+        userNameElements.forEach(element => {
+            element.textContent = "Not Logged In";  // Handle any error during decoding
+        });
     }
 }
 
-     // Call the function when the page loads
-     document.addEventListener('DOMContentLoaded', function() {
-    console.log("Page loaded, updating username...");
-    updateUserName();
-});
-
-     // Also update when localStorage changes
-     window.addEventListener('storage', function(e) {
-     if (e.key === 'jwtToken') {
-        console.log("JWT token changed, updating username...");
-        updateUserName();
-    }
-});
+// Run the function when the page is fully loaded
+document.addEventListener("DOMContentLoaded", showUserName);
 
 </script>
 </body>
