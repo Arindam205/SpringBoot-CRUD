@@ -312,14 +312,11 @@
                     </div>
                 </div>
             </div>
-
+            <!--.......................Dynamic Table for ROR Entries..........................................................................  -->
             <div class="container-fluid">
                 <div class="mb-3">
-                    <!-- <h3 class="fw-bold fs-4 mb-3 text-center" >Admin Dashboard</h3> -->
-
                     <div class="row">
                         <div class="col-12">
-                            <!-- Add a wrapper for sleek scrolling and shadow -->
                             <div class="table-responsive" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; overflow: hidden;">
                                 <table class="table table-hover">
                                     <thead class="thead-light">
@@ -332,48 +329,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Bootstrap 4 CDN and Starter Template</td>
-                                        <td>Cristina</td>
-                                        <td>2.846</td>
-                                        <td>
-                                            <button type="button" class="button-Action">
-                                                View
-                                            </button>
-                                            <!-- <button type="button" class="btn btn-outline-primary btn-lg"><i class="far fa-eye"></i></button> -->
-                                            <!-- <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button> -->
-                                            <!-- <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button> -->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Bootstrap Grid 4 Tutorial and Examples</td>
-                                        <td>Cristina</td>
-                                        <td>3.417</td>
-                                        <td>
-                                            <button type="button" class="button-Action">
-                                                View
-                                            </button>
-                                            <!-- <button type="button" class="btn btn-outline-primary btn-lg"><i class="far fa-eye"></i></button> -->
-                                            <!-- <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button> -->
-                                            <!-- <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button> -->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Bootstrap Flexbox Tutorial and Examples</td>
-                                        <td>Cristina</td>
-                                        <td>1.234</td>
-                                        <td>
-                                            <button type="button" class="button-Action">
-                                                View
-                                            </button>
-                                            <!-- <button type="button" class="btn btn-outline-primary btn-sm"><i class="far fa-eye"></i></button> -->
-                                            <!-- <button type="button" class="btn btn-outline-success btn-sm"><i class="fas fa-edit"></i></button> -->
-                                            <!-- <button type="button" class="btn btn-outline-danger btn-sm"><i class="far fa-trash-alt"></i></button> -->
-                                        </td>
-                                    </tr>
+                                    <!-- Rows will be populated here dynamically using JavaScript -->
                                     </tbody>
                                 </table>
                             </div>
@@ -385,30 +341,7 @@
 
 
         <!--         ....................................................................... Footer      .......................-->
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="row text-body-secondary">
-                    <div class="col-6 text-start ">
-                        <a class="text-body-secondary" href="#">
-                            <strong>CodzSwod</strong>
-                        </a>
-                    </div>
-                    <div class="col-6 text-end text-body-secondary d-none d-md-block">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item">
-                                <a class="text-body-secondary" href="#">Contact</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-body-secondary" href="#">About Us</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-body-secondary" href="#">Terms & Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -421,12 +354,11 @@
 <script>
     const hamBurger = document.querySelector(".toggle-btn");
 
-    hamBurger.addEventListener("click", function () {
+hamBurger.addEventListener("click", function () {
     document.querySelector("#sidebar").classList.toggle("expand");
 });
 
-
-    // Function to fetch JWT token from localStorage or sessionStorage
+// Function to fetch JWT token from localStorage or sessionStorage
 function getJwtToken() {
     return localStorage.getItem('jwtToken'); // Modify this if you store the token in sessionStorage or cookies
 }
@@ -465,6 +397,9 @@ function showUserName() {
             userNameElements.forEach(element => {
                 element.textContent = userName;  // Update all elements with the username
             });
+
+            // **Call fetchRorData with the decoded username**:
+            fetchRorData(userName); // This triggers the API call with the username
         } else {
             userNameElements.forEach(element => {
                 element.textContent = "Not Logged In";  // Fallback if username isn't found
@@ -477,6 +412,51 @@ function showUserName() {
         });
     }
 }
+
+// Function to fetch ROR data for the logged-in user
+async function fetchRorData(userName) {
+    try {
+        console.log(`Fetching data for user: ${userName}`); // Debugging log
+        const response = await fetch(`http://localhost:8080/api/v1/deo/viewRorDetails/${userName}?skip=0&limit=10`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch ROR data");
+        }
+
+        const data = await response.json();
+        console.log("Fetched data:", data); // Debugging log for data
+
+        // Populate the table with fetched data
+        populateTable(data);
+
+        // Update the total ROR entry count
+        updateTotalRorCount(data.length);
+
+    } catch (error) {
+        console.error("Error fetching ROR data:", error);
+    }
+}
+
+// Function to populate the table with ROR data
+function populateTable(data) {
+    const tableBody = document.querySelector("table tbody");
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    data.forEach((entry, index) => {
+        const row = `
+            <tr>
+                <th scope="row">${index + 1}</th>
+                <td>${entry.rorId}</td>
+                <td>${entry.rationCardNumber}</td>
+                <td>${entry.headOfFamilyName}</td>
+                <td>
+                    <button type="button" class="button-Action">View</button>
+                </td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML('beforeend', row);
+    });
+}
+
 
 // Run the function when the page is fully loaded
 document.addEventListener("DOMContentLoaded", showUserName);
