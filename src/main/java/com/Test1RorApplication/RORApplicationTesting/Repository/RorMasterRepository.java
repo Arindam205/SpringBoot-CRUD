@@ -37,4 +37,12 @@ public interface RorMasterRepository extends JpaRepository<RorMaster, UUID> {
         ORDER BY rm.createdDate DESC
         """)
     List<RorDetailsDTO> findRorDetailsByCreatedUser(@Param("createdByUser") String createdByUser, Pageable pageable);
+
+
+    @Query("""
+       SELECT COUNT(rm.rorMasterId)
+       FROM RorMaster rm
+       WHERE rm.createdByUser = :createdByUser
+       """)
+    Long countRorDetailsByCreatedUser(@Param("createdByUser") String createdByUser);
 }

@@ -176,11 +176,12 @@ public class RorMasterService {
 
 
     @Transactional(readOnly = true)
-    public List<RorDetailsDTO> getRorDetailsByCreatedUser(String createdByUser, int skip, int limit) {
+    public RorDetailsResponse getRorDetailsByCreatedUser(String createdByUser, int skip, int limit) {
         log.info("Fetching ROR details for user: {}", createdByUser);
 
         Pageable pageable = PageRequest.of(skip / 10, Math.min(limit, 50));
         List<RorDetailsDTO> rorDetails = rorMasterRepository.findRorDetailsByCreatedUser(createdByUser, pageable);
+        Long totalCount = rorMasterRepository.countRorDetailsByCreatedUser(createdByUser);
 
         if (rorDetails.isEmpty()) {
             log.warn("No ROR details found for user: {}", createdByUser);
@@ -188,6 +189,6 @@ public class RorMasterService {
         }
 
         log.debug("Found {} ROR records for user: {}", rorDetails.size(), createdByUser);
-        return rorDetails;
+        return new RorDetailsResponse(rorDetails, totalCount);
     }
 }
