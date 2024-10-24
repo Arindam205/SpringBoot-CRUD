@@ -317,7 +317,7 @@
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-12">
-                            <div class="table-responsive" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; overflow: hidden;">
+                            <div class="table-responsive" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow-y: auto; border-radius: 8px;">
                                 <table class="table table-hover">
                                     <thead class="thead-light">
                                     <tr>
@@ -425,11 +425,15 @@ async function fetchRorData(userName) {
         const data = await response.json();
         console.log("Fetched data:", data); // Debugging log for data
 
-        // Populate the table with fetched data
-        populateTable(data);
+        // Extract `rorDetails` and `totalCount` from the response
+        const rorDetails = data.rorDetails;
+        const totalCount = data.totalCount;
 
-        // Update the total ROR entry count
-        updateTotalRorCount(data.length);
+        // Populate the table with fetched ROR details
+        populateTable(rorDetails);
+
+        // Update the total ROR entry count dynamically
+        updateTotalRorCount(totalCount);
 
     } catch (error) {
         console.error("Error fetching ROR data:", error);
@@ -455,6 +459,12 @@ function populateTable(data) {
         `;
         tableBody.insertAdjacentHTML('beforeend', row);
     });
+}
+
+// Function to update the total ROR entry count
+function updateTotalRorCount(count) {
+    const entryCountElement = document.getElementById("entry-count");
+    entryCountElement.textContent = count;
 }
 
 
