@@ -292,10 +292,22 @@
                                         <div class="form-group col-md-4">
                                             <label>Occupation<span style="color: red;">*</span></label>
                                             <select class="form-control occupation" required>
+                                                <option value="" disabled selected>Select</option>
                                                 <option value="Government service">Government service</option>
                                                 <option value="Private job">Private job</option>
                                                 <option value="Self Employed">Self Employed</option>
                                                 <option value="Self Employed">Unemployed</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label>Caste<span style="color: red;">*</span></label>
+                                            <select class="form-control caste" required>
+                                                <option value="" disabled selected>Select</option>
+                                                <option value="ST">ST</option>
+                                                <option value="SC">SC</option>
+                                                <option value="OBC">OBC</option>
+                                                <option value="UR">UR</option>
                                             </select>
                                         </div>
                                     </div>
@@ -610,6 +622,19 @@ function addFamilyMember() {
                     <option value="Unemployed">Unemployed</option>
                 </select>
             </div>
+
+            <div class="form-group col-md-4">
+                <label>Caste<span style="color: red;">*</span></label>
+                    <select class="form-control caste" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="ST">ST</option>
+                        <option value="SC">SC</option>
+                        <option value="OBC">OBC</option>
+                        <option value="UR">UR</option>
+                    </select>
+            </div>
+
+
         </div>
         <button type="button" class="btn btn-danger remove-family-member">Remove</button>
         <hr>
@@ -806,6 +831,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
             religion: memberSection.querySelector('.religion').value,
             identityProof: memberSection.querySelector('.identity-proof').value,
             idNumber: memberSection.querySelector('.id-number').value,
+            caste: memberSection.querySelector('.caste').value,
         };
         familyMembers.push(member);
     });

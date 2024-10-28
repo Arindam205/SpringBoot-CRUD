@@ -127,6 +127,7 @@ public class RorMasterService {
                     .religion(familyMemberDTO.getReligion())
                     .identityProof(familyMemberDTO.getIdentityProof())
                     .idNumber(familyMemberDTO.getIdNumber())
+                    .caste(familyMemberDTO.getCaste())
                     .build();
             familyMembersRepository.save(familyMember);
         });

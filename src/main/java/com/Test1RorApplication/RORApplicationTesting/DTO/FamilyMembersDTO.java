@@ -26,4 +26,5 @@ public class FamilyMembersDTO {
     private String religion;
     private String identityProof;
     private String idNumber;
+    private String caste;
 }

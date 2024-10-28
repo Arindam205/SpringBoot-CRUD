@@ -68,4 +68,7 @@ public class FamilyMembers {
     @Column(nullable = false, unique = true)
     private String idNumber;
 
+    @Column(nullable = false)
+    private String caste;
+
 }
